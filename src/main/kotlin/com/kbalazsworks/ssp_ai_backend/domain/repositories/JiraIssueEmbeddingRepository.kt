@@ -7,19 +7,16 @@ import com.kbalazsworks.ssp_ai_backend.domain.exceptions.JiraTicketEmbeddingExce
 import org.springframework.stereotype.Repository
 
 @Repository
-class JiraIssueEmbeddingRepository(private val jooqService: JooqService) : AbstractRepository(jooqService) {
-    fun save(jiraIssueEmbedding: JiraIssueEmbedding): JiraIssueEmbedding {
-        val entity: JiraIssueEmbedding? = jooqService.getDslContext()
-            .insertInto(JIRA_TICKET_EMBEDDINGS)
-            .set(JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
-            .set(JIRA_TICKET_EMBEDDINGS.RAW_JSON, jiraIssueEmbedding.rawJson)
-            .set(JIRA_TICKET_EMBEDDINGS.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
-            .set(JIRA_TICKET_EMBEDDINGS.EMBEDDING1536, toPgVectorField(jiraIssueEmbedding.embedding1536))
-            .set(JIRA_TICKET_EMBEDDINGS.EMBEDDING3072, toPgVectorField(jiraIssueEmbedding.embedding3072))
-            .set(JIRA_TICKET_EMBEDDINGS.CREATED_AT, jiraIssueEmbedding.createdAt)
-            .returning()
-            .fetchOneInto(JiraIssueEmbedding::class.java)
-
-        return entity ?: throw JiraTicketEmbeddingException("JiraTicketEmbedding creation failed.")
-    }
+class JiraIssueEmbeddingRepository(jooqService: JooqService) : AbstractRepository(jooqService) {
+    fun save(jiraIssueEmbedding: JiraIssueEmbedding) = getCtx()
+        .insertInto(jiraTicketEmbeddingTable)
+        .set(JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
+        .set(JIRA_TICKET_EMBEDDINGS.RAW_JSON, jiraIssueEmbedding.rawJson)
+        .set(JIRA_TICKET_EMBEDDINGS.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
+        .set(JIRA_TICKET_EMBEDDINGS.EMBEDDING1536, toPgVectorField(jiraIssueEmbedding.embedding1536))
+        .set(JIRA_TICKET_EMBEDDINGS.EMBEDDING3072, toPgVectorField(jiraIssueEmbedding.embedding3072))
+        .set(JIRA_TICKET_EMBEDDINGS.CREATED_AT, jiraIssueEmbedding.createdAt)
+        .returning()
+        .fetchOneInto(JiraIssueEmbedding::class.java)
+        ?: throw JiraTicketEmbeddingException("JiraTicketEmbedding creation failed.")
 }

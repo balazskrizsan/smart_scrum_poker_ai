@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository
 abstract class AbstractRepository(private val jooqService: JooqService) {
     val jiraTicketEmbeddingTable = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
 
+    fun getCtx() = jooqService.getDslContext()
+
     fun toPgVectorField(embedding: PGvector?) = DSL.field("?::vector", PGvector::class.java, embedding?.toString())
 }
