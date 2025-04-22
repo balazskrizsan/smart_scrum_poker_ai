@@ -18,7 +18,7 @@ import java.util.*
 class ServiceFactory(
     private val jiraTicketEmbeddingRepository: JiraTicketEmbeddingRepository,
     private val jiraSprintRepository: JiraSprintRepository,
-    private val openApiService: OpenApiService,
+    private val openAIClient: OpenAIClient,
     private val localDateTimeFactory: LocalDateTimeFactory,
     private val dateFactory: DateFactory,
 ) {

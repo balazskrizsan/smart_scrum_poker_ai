@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 @Service
 class EmbeddingService(
     private val jiraTicketEmbeddingRepository: JiraTicketEmbeddingRepository,
-    private val openApiService: OpenApiService,
+    private val openAiService: OpenAiService,
     private val localDateTimeFactory: LocalDateTimeFactory
 ) {
     companion object {
@@ -25,7 +25,7 @@ class EmbeddingService(
         logger.info("Create embedding")
 
         val tempEmbeddingConfig = EmbeddingConfig(EmbeddingModel.TEXT_EMBEDDING_3_SMALL)
-        val embeddingResult = openApiService.createEmbedding(tempEmbeddingConfig, createEmbedding)
+        val embeddingResult = openAiService.createEmbedding(tempEmbeddingConfig, createEmbedding)
 
         val jiraTicketEmbedding = jiraTicketEmbeddingRepository.save(
             JiraTicketEmbedding(
