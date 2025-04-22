@@ -2,7 +2,7 @@ package com.kbalazsworks.ssp_ai_backend.api.embedding_controller
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.EmbeddingRequest
 import com.kbalazsworks.ssp_ai_backend.domain.services.EmbeddingService
-import com.kbalazsworks.ssp_ai_backend.services.RequestMapperService
+import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
 import jakarta.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity

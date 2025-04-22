@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.services
+package com.kbalazsworks.ssp_ai_backend.api.services
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.EmbeddingRequest
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateEmbedding
