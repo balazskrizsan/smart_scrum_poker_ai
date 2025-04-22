@@ -22,8 +22,9 @@ class PresetService(
             run {
                 val instance: IInsert = applicationContext.getBean(preset.java)
 
-                instance.setDslContext(jooqService.getDslContext())
+                instance.setDi(jooqService.getDslContext(), applicationContext)
 
+                instance.runParent()
                 instance.run()
             }
         }

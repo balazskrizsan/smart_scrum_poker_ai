@@ -1,8 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.integration.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
-import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1Company
-import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1JiraBoard
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1JiraSprint
 import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraTicketEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.services.EmbeddingService
@@ -21,12 +19,12 @@ import org.junit.jupiter.api.extension.ExtendWith
 class EmbeddingService_CreateJiraTicketEmbeddingTest : AbstractTest() {
     @Test
     @DisplayName("Valid embedding / Saved to db")
-    @SqlPreset(presets = [Insert1Company::class, Insert1JiraBoard::class, Insert1JiraSprint::class])
+    @SqlPreset(presets = [Insert1JiraSprint::class])
     fun validEmbedding_savedToDb() {
         // Arrange
         val testedCreateEmbedding = CreateEmbeddingFakeBuilder().build()
 
-        val exceptedEmbedding = JiraTicketEmbeddingFakeBuilder().build()
+        val exceptedEmbedding = JiraTicketEmbeddingFakeBuilder().id(1).build()
 
         val openApiServiceMock = OpenApiServiceMocker().mockCreateEmbedding().create()
         val localDateTimeFactoryMock = LocalDateTimeFactoryMocker().setDefaultValues().create()
