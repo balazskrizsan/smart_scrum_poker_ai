@@ -4,7 +4,8 @@ import com.kbalazsworks.ssp_ai_backend.common.factories.DateFactory
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraTicketEmbeddingRepository
-import com.kbalazsworks.ssp_ai_backend.domain.services.OpenApiService
+import com.kbalazsworks.ssp_ai_backend.domain.services.OpenAiService
+import com.openai.client.OpenAIClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.lang.reflect.Constructor
@@ -29,7 +30,8 @@ class ServiceFactory(
 
     fun setOneTimeMock(newClass: Class<*>, mock: Any) {
         val className = newClass.name
-        val mockClassName = mock::class.java.name
+        // Remove $ ending from mock class name
+        val mockClassName = mock::class.java.name.substringBefore('$')
 
         val mocksForClass = oneTimeMocks.getOrPut(className) { hashMapOf() }
         mocksForClass[mockClassName] = mock
