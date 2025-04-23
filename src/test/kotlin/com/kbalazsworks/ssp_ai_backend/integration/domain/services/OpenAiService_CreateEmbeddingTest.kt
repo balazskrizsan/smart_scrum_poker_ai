@@ -18,6 +18,8 @@ class OpenAiService_CreateEmbeddingTest : AbstractTest() {
         val testedEmbeddingConfig = EmbeddingConfigFakeBuilder().build()
         val testedCreateEmbedding = CreateEmbeddingFakeBuilder().build()
 
+        val expected = EmbeddingHelper.cached1536VectorResponse
+
         val openAIClientMock = OpenAIClientMocker().mockEmbeddingsCreate1536().create()
 
         // Act
@@ -25,6 +27,6 @@ class OpenAiService_CreateEmbeddingTest : AbstractTest() {
         val actual = openAiService.createEmbedding(testedEmbeddingConfig, testedCreateEmbedding)
 
         // Assert
-        assertThat(actual).isEqualTo(EmbeddingHelper.cached1536VectorResponse)
+        assertThat(actual).isEqualTo(expected)
     }
 }
