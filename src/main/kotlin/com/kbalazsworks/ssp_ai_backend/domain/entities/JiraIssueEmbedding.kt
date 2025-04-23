@@ -1,5 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.domain.entities
 
+import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
 import com.pgvector.PGvector
 import java.time.LocalDateTime
 
@@ -11,4 +12,9 @@ data class JiraIssueEmbedding(
     val embedding1536: PGvector?,
     val embedding3072: PGvector?,
     val createdAt: LocalDateTime,
-)
+) {
+    companion object {
+        val TABLE_NAME = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
+    }
+}
+
