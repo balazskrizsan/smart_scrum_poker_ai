@@ -1,5 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.domain.repositories
 
+import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
 import com.kbalazsworks.ssp_ai_backend.db.tables.references.JIRA_TICKET_EMBEDDINGS
 import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraIssueEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.exceptions.JiraTicketEmbeddingException
@@ -9,13 +10,13 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
 
 @Repository
-class JiraIssueEmbeddingRepository : AbstractRepository() {
+class JiraIssueEmbeddingRepository(private val jooqService: JooqService) : AbstractRepository(jooqService) {
     companion object {
         private val logger = LoggerFactory.getLogger(JiraIssueEmbeddingRepository::class.java)
     }
 
     fun save(jiraIssueEmbedding: JiraIssueEmbedding): JiraIssueEmbedding {
-        val entity: JiraIssueEmbedding? = getDSLContext()
+        val entity: JiraIssueEmbedding? = jooqService.getDslContext()
             .insertInto(JIRA_TICKET_EMBEDDINGS)
             .set(JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
             .set(JIRA_TICKET_EMBEDDINGS.RAW_JSON, jiraIssueEmbedding.rawJson)

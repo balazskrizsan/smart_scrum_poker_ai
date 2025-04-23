@@ -2,6 +2,8 @@ package com.kbalazsworks.ssp_ai_backend.test_services.service_factory
 
 import com.kbalazsworks.ssp_ai_backend.common.factories.DateFactory
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
+import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
+import com.kbalazsworks.ssp_ai_backend.domain.repositories.CompanyRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
 import com.openai.client.OpenAIClient
@@ -15,8 +17,10 @@ import java.util.*
 
 @Service
 class ServiceFactory(
+    private val jooqService: JooqService,
     private val jiraIssueEmbeddingRepository: JiraIssueEmbeddingRepository,
     private val jiraSprintRepository: JiraSprintRepository,
+    private val companyRepository: CompanyRepository,
     private val openAIClient: OpenAIClient,
     private val localDateTimeFactory: LocalDateTimeFactory,
     private val dateFactory: DateFactory,
