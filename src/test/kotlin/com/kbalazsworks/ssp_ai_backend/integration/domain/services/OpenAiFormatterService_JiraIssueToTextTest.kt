@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class OpenAiFormatterService_JiraIssueToText : AbstractTest() {
+class OpenAiFormatterService_JiraIssueToTextTest : AbstractTest() {
     @Test
     @DisplayName("Complex Jira Ticket JSON / Returns formatted text")
     fun complexJiraTicketJson_returnsFormattedText() {
