@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.api.embedding_controller
+package com.kbalazsworks.ssp_ai_backend.api.controllers.embedding_controller
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.EmbeddingRequest
 import com.kbalazsworks.ssp_ai_backend.domain.services.EmbeddingService
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/embedding")
+@RequestMapping("/api/v1/embedding")
 class EmbeddingAction(private val embeddingService: EmbeddingService) {
     companion object {
         private val logger = LoggerFactory.getLogger(EmbeddingAction::class.java)
