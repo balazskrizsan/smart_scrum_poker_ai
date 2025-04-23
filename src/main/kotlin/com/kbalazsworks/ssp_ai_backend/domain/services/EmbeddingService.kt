@@ -1,8 +1,8 @@
 package com.kbalazsworks.ssp_ai_backend.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
-import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraTicketEmbedding
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraTicketEmbeddingRepository
+import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.EmbeddingConfig
 import com.openai.models.embeddings.CreateEmbeddingResponse
@@ -13,8 +13,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class EmbeddingService(
-    private val jiraTicketEmbeddingRepository: JiraTicketEmbeddingRepository,
+    private val jiraIssueEmbeddingRepository: JiraIssueEmbeddingRepository,
     private val openAiService: OpenAiService,
+    private val openAiFormatterService: OpenAiFormatterService,
     private val localDateTimeFactory: LocalDateTimeFactory
 ) {
     companion object {
@@ -27,17 +28,18 @@ class EmbeddingService(
         val tempEmbeddingConfig = EmbeddingConfig(EmbeddingModel.TEXT_EMBEDDING_3_SMALL)
         val embeddingResult = openAiService.createEmbedding(tempEmbeddingConfig, createEmbedding)
 
-        val jiraTicketEmbedding = jiraTicketEmbeddingRepository.save(
-            JiraTicketEmbedding(
+        val jiraIssueEmbedding = jiraIssueEmbeddingRepository.save(
+            JiraIssueEmbedding(
                 null,
                 createEmbedding.jiraSprintId,
                 createEmbedding.data,
+                openAiFormatterService.jiraIssueToText(createEmbedding.data),
                 mapEmbeddingResult(embeddingResult),
                 null,
                 localDateTimeFactory.create()
             )
         )
-        logger.info("Embedding saved; id#{}", jiraTicketEmbedding.id)
+        logger.info("Embedding saved; id#{}", jiraIssueEmbedding.id)
     }
 
     private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =

@@ -23,10 +23,11 @@ CREATE TABLE jira_sprints
 
 CREATE TABLE jira_ticket_embeddings
 (
-    id             BIGSERIAL PRIMARY KEY,
-    jira_sprint_id BIGINT NOT NULL REFERENCES jira_sprints (id) ON DELETE CASCADE,
-    raw_json       TEXT,
-    embedding1536  VECTOR(1536),
-    embedding3072  VECTOR(3072),
-    created_at     TIMESTAMP DEFAULT NOW()
+    id                     BIGSERIAL PRIMARY KEY,
+    jira_sprint_id         BIGINT NOT NULL REFERENCES jira_sprints (id) ON DELETE CASCADE,
+    raw_json               TEXT,
+    openai_compatible_text TEXT,
+    embedding1536          VECTOR(1536),
+    embedding3072          VECTOR(3072),
+    created_at             TIMESTAMP DEFAULT NOW()
 );

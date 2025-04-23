@@ -31,17 +31,21 @@ open class JiraTicketEmbeddingsRecord() : UpdatableRecordImpl<JiraTicketEmbeddin
         set(value): Unit = set(2, value)
         get(): String? = get(2) as String?
 
-    open var embedding1536: PGvector?
+    open var openaiCompatibleText: String?
         set(value): Unit = set(3, value)
-        get(): PGvector? = get(3) as PGvector?
+        get(): String? = get(3) as String?
 
-    open var embedding3072: PGvector?
+    open var embedding1536: PGvector?
         set(value): Unit = set(4, value)
         get(): PGvector? = get(4) as PGvector?
 
-    open var createdAt: LocalDateTime?
+    open var embedding3072: PGvector?
         set(value): Unit = set(5, value)
-        get(): LocalDateTime? = get(5) as LocalDateTime?
+        get(): PGvector? = get(5) as PGvector?
+
+    open var createdAt: LocalDateTime?
+        set(value): Unit = set(6, value)
+        get(): LocalDateTime? = get(6) as LocalDateTime?
 
     // -------------------------------------------------------------------------
     // Primary key information
@@ -52,10 +56,11 @@ open class JiraTicketEmbeddingsRecord() : UpdatableRecordImpl<JiraTicketEmbeddin
     /**
      * Create a detached, initialised JiraTicketEmbeddingsRecord
      */
-    constructor(id: Long? = null, jiraSprintId: Long? = null, rawJson: String? = null, embedding1536: PGvector? = null, embedding3072: PGvector? = null, createdAt: LocalDateTime? = null): this() {
+    constructor(id: Long? = null, jiraSprintId: Long? = null, rawJson: String? = null, openaiCompatibleText: String? = null, embedding1536: PGvector? = null, embedding3072: PGvector? = null, createdAt: LocalDateTime? = null): this() {
         this.id = id
         this.jiraSprintId = jiraSprintId
         this.rawJson = rawJson
+        this.openaiCompatibleText = openaiCompatibleText
         this.embedding1536 = embedding1536
         this.embedding3072 = embedding3072
         this.createdAt = createdAt

@@ -3,8 +3,7 @@ package com.kbalazsworks.ssp_ai_backend.test_services.service_factory
 import com.kbalazsworks.ssp_ai_backend.common.factories.DateFactory
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraTicketEmbeddingRepository
-import com.kbalazsworks.ssp_ai_backend.domain.services.OpenAiService
+import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
 import com.openai.client.OpenAIClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -16,7 +15,7 @@ import java.util.*
 
 @Service
 class ServiceFactory(
-    private val jiraTicketEmbeddingRepository: JiraTicketEmbeddingRepository,
+    private val jiraIssueEmbeddingRepository: JiraIssueEmbeddingRepository,
     private val jiraSprintRepository: JiraSprintRepository,
     private val openAIClient: OpenAIClient,
     private val localDateTimeFactory: LocalDateTimeFactory,

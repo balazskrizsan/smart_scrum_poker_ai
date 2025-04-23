@@ -95,6 +95,12 @@ open class JiraTicketEmbeddings(
     val RAW_JSON: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("raw_json"), SQLDataType.CLOB, this, "")
 
     /**
+     * The column
+     * <code>public.jira_ticket_embeddings.openai_compatible_text</code>.
+     */
+    val OPENAI_COMPATIBLE_TEXT: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("openai_compatible_text"), SQLDataType.CLOB, this, "")
+
+    /**
      * The column <code>public.jira_ticket_embeddings.embedding1536</code>.
      */
     val EMBEDDING1536: TableField<JiraTicketEmbeddingsRecord, PGvector?> = createField(DSL.name("embedding1536"), DefaultDataType.getDefaultDataType("\"public\".\"vector\""), this, "", PgVectorBinding())

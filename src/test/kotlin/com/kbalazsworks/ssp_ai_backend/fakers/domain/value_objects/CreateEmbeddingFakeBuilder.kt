@@ -7,7 +7,7 @@ import com.kbalazsworks.ssp_ai_backend.fakers.domain.entities.JiraTicketEmbeddin
 class CreateEmbeddingFakeBuilder {
     companion object {
         const val DEFAULT_JIRA_SPRINT_ID = JiraSprintFakeBuilder.DEFAULT_ID
-        const val DEFAULT_RAW_JSON = JiraTicketEmbeddingFakeBuilder.DEFAULT_RAW_JSON
+        val DEFAULT_RAW_JSON = JiraTicketEmbeddingFakeBuilder.DEFAULT_RAW_JSON
     }
 
     private var jiraSprintId = DEFAULT_JIRA_SPRINT_ID
