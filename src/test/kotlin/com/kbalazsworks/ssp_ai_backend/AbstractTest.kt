@@ -8,9 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import java.util.function.Consumer
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
+import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPresetExtension
+import org.junit.jupiter.api.extension.ExtendWith
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ContextConfiguration(classes = [AiBackendApplication::class])
+@ExtendWith(SqlPresetExtension::class)
 abstract class AbstractTest {
     @Autowired
     private lateinit var serviceFactory: ServiceFactory

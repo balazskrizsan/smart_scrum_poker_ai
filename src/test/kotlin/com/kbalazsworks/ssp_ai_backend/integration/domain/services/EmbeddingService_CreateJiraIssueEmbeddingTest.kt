@@ -10,13 +10,10 @@ import com.kbalazsworks.ssp_ai_backend.mockers.common.factories.LocalDateTimeFac
 import com.kbalazsworks.ssp_ai_backend.mockers.domain.services.OpenAiFormatterServiceMocker
 import com.kbalazsworks.ssp_ai_backend.mockers.domain.services.OpenApiServiceMocker
 import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset
-import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPresetExtension
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(SqlPresetExtension::class)
 class EmbeddingService_CreateJiraIssueEmbeddingTest : AbstractTest() {
     @Test
     @DisplayName("Valid embedding / Saved to db")
