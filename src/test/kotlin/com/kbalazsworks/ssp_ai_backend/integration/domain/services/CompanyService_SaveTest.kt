@@ -15,7 +15,7 @@ class CompanyService_SaveTest : AbstractTest() {
     private lateinit var companyRepository: CompanyRepository
 
     @Test
-    @SqlPreset(truncateAfter = false)
+    @SqlPreset
     fun validCompany_savesToDb() {
         // Arrange
         val tested = CompanyFakeBuilder().build()
