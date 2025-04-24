@@ -4,10 +4,8 @@ import com.kbalazsworks.ssp_ai_backend.domain.repositories.orm.OrmConstants
 import org.jooq.impl.TableImpl
 import org.jooq.impl.UpdatableRecordImpl
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Service
 import java.lang.reflect.Field
 
-@Service
 class ClassService {
     companion object {
         private val logger = LoggerFactory.getLogger(ClassService::class.java)
