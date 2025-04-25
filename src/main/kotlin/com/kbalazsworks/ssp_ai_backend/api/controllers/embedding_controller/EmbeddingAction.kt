@@ -3,6 +3,8 @@ package com.kbalazsworks.ssp_ai_backend.api.controllers.embedding_controller
 import com.kbalazsworks.ssp_ai_backend.api.requests.EmbeddingRequest
 import com.kbalazsworks.ssp_ai_backend.domain.services.EmbeddingService
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
+import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
+import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
 import jakarta.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -19,11 +21,11 @@ class EmbeddingAction(private val embeddingService: EmbeddingService) {
     }
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
-    fun store(@Valid @RequestBody request: EmbeddingRequest): ResponseEntity<String> {
+    fun store(@Valid @RequestBody request: EmbeddingRequest): ResponseEntity<ResponseData<String>> {
         logger.info("Api call: POST:{}", "/api/store")
 
         embeddingService.createEmbedding(RequestMapperService.map(request))
 
-        return ResponseEntity.ok("")
+        return ResponseEntityBuilder<String>().data("").build()
     }
 }
