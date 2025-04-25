@@ -9,6 +9,7 @@ import com.kbalazsworks.ssp_ai_backend.db.tables.FlywaySchemaHistory
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraSprints
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
+import com.kbalazsworks.ssp_ai_backend.db.tables.Questions
 
 
 
@@ -36,3 +37,8 @@ val JIRA_SPRINTS: JiraSprints = JiraSprints.JIRA_SPRINTS
  * The table <code>public.jira_ticket_embeddings</code>.
  */
 val JIRA_TICKET_EMBEDDINGS: JiraTicketEmbeddings = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
+
+/**
+ * The table <code>public.questions</code>.
+ */
+val QUESTIONS: Questions = Questions.QUESTIONS

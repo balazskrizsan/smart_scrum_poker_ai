@@ -9,11 +9,13 @@ import com.kbalazsworks.ssp_ai_backend.db.tables.FlywaySchemaHistory
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraSprints
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
+import com.kbalazsworks.ssp_ai_backend.db.tables.Questions
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.CompaniesRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.FlywaySchemaHistoryRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraBoardsRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraSprintsRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraTicketEmbeddingsRecord
+import com.kbalazsworks.ssp_ai_backend.db.tables.records.QuestionsRecord
 
 import org.jooq.ForeignKey
 import org.jooq.UniqueKey
@@ -31,6 +33,7 @@ val FLYWAY_SCHEMA_HISTORY_PK: UniqueKey<FlywaySchemaHistoryRecord> = Internal.cr
 val JIRA_BOARDS_PKEY: UniqueKey<JiraBoardsRecord> = Internal.createUniqueKey(JiraBoards.JIRA_BOARDS, DSL.name("jira_boards_pkey"), arrayOf(JiraBoards.JIRA_BOARDS.ID), true)
 val JIRA_SPRINTS_PKEY: UniqueKey<JiraSprintsRecord> = Internal.createUniqueKey(JiraSprints.JIRA_SPRINTS, DSL.name("jira_sprints_pkey"), arrayOf(JiraSprints.JIRA_SPRINTS.ID), true)
 val JIRA_TICKET_EMBEDDINGS_PKEY: UniqueKey<JiraTicketEmbeddingsRecord> = Internal.createUniqueKey(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS, DSL.name("jira_ticket_embeddings_pkey"), arrayOf(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS.ID), true)
+val QUESTIONS_PKEY: UniqueKey<QuestionsRecord> = Internal.createUniqueKey(Questions.QUESTIONS, DSL.name("questions_pkey"), arrayOf(Questions.QUESTIONS.ID), true)
 
 // -------------------------------------------------------------------------
 // FOREIGN KEY definitions

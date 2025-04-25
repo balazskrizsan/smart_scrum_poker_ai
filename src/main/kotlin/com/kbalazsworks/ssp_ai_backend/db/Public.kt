@@ -9,6 +9,7 @@ import com.kbalazsworks.ssp_ai_backend.db.tables.FlywaySchemaHistory
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraSprints
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
+import com.kbalazsworks.ssp_ai_backend.db.tables.Questions
 
 import kotlin.collections.List
 
@@ -55,6 +56,11 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
      */
     val JIRA_TICKET_EMBEDDINGS: JiraTicketEmbeddings get() = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
 
+    /**
+     * The table <code>public.questions</code>.
+     */
+    val QUESTIONS: Questions get() = Questions.QUESTIONS
+
     override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
 
     override fun getTables(): List<Table<*>> = listOf(
@@ -62,6 +68,7 @@ open class Public : SchemaImpl("public", DefaultCatalog.DEFAULT_CATALOG) {
         FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
         JiraBoards.JIRA_BOARDS,
         JiraSprints.JIRA_SPRINTS,
-        JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
+        JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS,
+        Questions.QUESTIONS
     )
 }

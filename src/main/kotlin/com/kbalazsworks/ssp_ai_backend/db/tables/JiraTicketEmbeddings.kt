@@ -92,13 +92,13 @@ open class JiraTicketEmbeddings(
     /**
      * The column <code>public.jira_ticket_embeddings.raw_json</code>.
      */
-    val RAW_JSON: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("raw_json"), SQLDataType.CLOB, this, "")
+    val RAW_JSON: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("raw_json"), SQLDataType.CLOB.nullable(false), this, "")
 
     /**
      * The column
      * <code>public.jira_ticket_embeddings.openai_compatible_text</code>.
      */
-    val OPENAI_COMPATIBLE_TEXT: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("openai_compatible_text"), SQLDataType.CLOB, this, "")
+    val OPENAI_COMPATIBLE_TEXT: TableField<JiraTicketEmbeddingsRecord, String?> = createField(DSL.name("openai_compatible_text"), SQLDataType.CLOB.nullable(false), this, "")
 
     /**
      * The column <code>public.jira_ticket_embeddings.embedding1536</code>.
@@ -113,7 +113,7 @@ open class JiraTicketEmbeddings(
     /**
      * The column <code>public.jira_ticket_embeddings.created_at</code>.
      */
-    val CREATED_AT: TableField<JiraTicketEmbeddingsRecord, LocalDateTime?> = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "")
+    val CREATED_AT: TableField<JiraTicketEmbeddingsRecord, LocalDateTime?> = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "")
 
     private constructor(alias: Name, aliased: Table<JiraTicketEmbeddingsRecord>?): this(alias, null, null, null, aliased, null, null)
     private constructor(alias: Name, aliased: Table<JiraTicketEmbeddingsRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, null, aliased, parameters, null)
