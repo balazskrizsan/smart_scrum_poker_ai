@@ -25,15 +25,19 @@ class EmbeddingService(
     fun createEmbedding(createEmbedding: CreateEmbedding) {
         logger.info("Create embedding")
 
+        val openAiFormattedData = openAiFormatterService.jiraIssueToText(createEmbedding.data)
         val tempEmbeddingConfig = EmbeddingConfig(EmbeddingModel.TEXT_EMBEDDING_3_SMALL)
-        val embeddingResult = openAiService.createEmbedding(tempEmbeddingConfig, createEmbedding)
+        val embeddingResult = openAiService.createEmbedding(
+            tempEmbeddingConfig,
+            CreateEmbedding(createEmbedding.jiraSprintId, openAiFormattedData)
+        )
 
         val jiraIssueEmbedding = jiraIssueEmbeddingRepository.save(
             JiraIssueEmbedding(
                 null,
                 createEmbedding.jiraSprintId,
                 createEmbedding.data,
-                openAiFormatterService.jiraIssueToText(createEmbedding.data),
+                openAiFormattedData,
                 mapEmbeddingResult(embeddingResult),
                 null,
                 localDateTimeFactory.create()

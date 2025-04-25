@@ -13,5 +13,7 @@ class CreateEmbeddingFakeBuilder {
     private var jiraSprintId = DEFAULT_JIRA_SPRINT_ID
     private var rawJson = DEFAULT_RAW_JSON
 
+    fun rawJson(rawJson: String) = apply { this.rawJson = rawJson }
+
     fun build() = CreateEmbedding(jiraSprintId, rawJson)
 }
