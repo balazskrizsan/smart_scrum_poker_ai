@@ -1,0 +1,23 @@
+### Successfull create
+POST {{host}}/api/v1/company
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Content-Length: 1014
+
+{
+  "name": "company name"
+}
+
+### Bad request
+POST {{host}}/api/v1/company
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Content-Length: 1014
+
+{
+  "name": ""
+}
