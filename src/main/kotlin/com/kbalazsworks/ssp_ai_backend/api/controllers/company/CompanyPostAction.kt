@@ -1,6 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.api.controllers.company
 
-import com.kbalazsworks.ssp_ai_backend.api.requests.company.PostRequest
+import com.kbalazsworks.ssp_ai_backend.api.requests.company.CompanyPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
 import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.services.StateService
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/company")
-class PostAction(
+class CompanyPostAction(
     private val companyService: CompanyService,
     private val stateService: StateService
 ) {
     companion object {
-        private val logger = LoggerFactory.getLogger(PostAction::class.java)
+        private val logger = LoggerFactory.getLogger(CompanyPostAction::class.java)
     }
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
-    fun store(@Valid @RequestBody request: PostRequest): ResponseEntity<ResponseData<String>> {
+    fun store(@Valid @RequestBody request: CompanyPostRequest): ResponseEntity<ResponseData<String>> {
         logger.info("Api call: POST:{}", "/api/v1/company")
 
         companyService.save(RequestMapperService.map(stateService.getSnapshot(), request))
