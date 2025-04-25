@@ -2,7 +2,7 @@
 <configuration xmlns="https://www.jooq.org/xsd/jooq-codegen-3.19.8.xsd">
     <jdbc>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://localhost:3044/ssp_ai</url>
+        <url>jdbc:postgresql://localhost:3054/ssp_ai</url>
         <user>admin</user>
         <password>admin_pass</password>
         <properties>
