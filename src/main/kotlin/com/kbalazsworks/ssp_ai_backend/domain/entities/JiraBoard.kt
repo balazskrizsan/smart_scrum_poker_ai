@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 data class JiraBoard(val id: Long?, val companyId: Long, val name: String, val createdAt: LocalDateTime) {
     companion object {
-        val TABLE_NAME = JiraBoards.JIRA_BOARDS
+        val DB_TABLE = JiraBoards.JIRA_BOARDS
     }
 }
 

@@ -14,7 +14,7 @@ data class JiraIssueEmbedding(
     val createdAt: LocalDateTime,
 ) {
     companion object {
-        val TABLE_NAME = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
+        val DB_TABLE = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
     }
 }
 

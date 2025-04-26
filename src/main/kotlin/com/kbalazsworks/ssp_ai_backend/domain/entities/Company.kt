@@ -5,6 +5,6 @@ import java.time.LocalDateTime
 
 data class Company(val id: Long? = null, val name: String, val createdAt: LocalDateTime) {
     companion object {
-        val TABLE_NAME = Companies.COMPANIES
+        val DB_TABLE = Companies.COMPANIES
     }
 }

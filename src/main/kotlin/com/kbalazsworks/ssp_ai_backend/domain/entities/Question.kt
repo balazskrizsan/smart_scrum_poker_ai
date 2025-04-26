@@ -12,6 +12,6 @@ data class Question(
     val createdAt: LocalDateTime,
 ) {
     companion object {
-        val TABLE_NAME = Questions.QUESTIONS
+        val DB_TABLE = Questions.QUESTIONS
     }
 }

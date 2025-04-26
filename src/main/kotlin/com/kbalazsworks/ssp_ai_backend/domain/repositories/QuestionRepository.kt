@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class QuestionRepository(private val jooqService: JooqService) : AbstractCrudRepository<Question>(jooqService) {
     companion object {
-        private val table = Question.TABLE_NAME;
+        private val table = Question.DB_TABLE;
     }
 
     fun save(question: Question): Question {

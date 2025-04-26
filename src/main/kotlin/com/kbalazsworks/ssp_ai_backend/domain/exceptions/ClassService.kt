@@ -13,11 +13,11 @@ class ClassService {
         fun getTableName(clazz: Class<*>): TableImpl<UpdatableRecordImpl<*>> {
             val field: Field?
             try {
-                field = clazz.getDeclaredField(OrmConstants.TABLE_NAME)
+                field = clazz.getDeclaredField(OrmConstants.DB_TABLE)
             } catch (e: NoSuchFieldException) {
-                logger.info("Table name field missing in entity: {}", OrmConstants.TABLE_NAME)
+                logger.info("Table name field missing in entity: {}", OrmConstants.DB_TABLE)
 
-                throw NoSuchFieldException("Table name field missing in entity: ${OrmConstants.TABLE_NAME}")
+                throw NoSuchFieldException("Table name field missing in entity: ${OrmConstants.DB_TABLE}")
             }
 
             field.isAccessible = true
