@@ -6,7 +6,7 @@ import com.kbalazsworks.ssp_ai_backend.helpers.EmbeddingHelper
 import com.kbalazsworks.ssp_ai_backend.helpers.JiraHelper
 import java.time.LocalDateTime
 
-class JiraTicketEmbeddingFakeBuilder {
+class JiraIssueEmbeddingFakeBuilder {
     companion object {
         const val DEFAULT_ID = 100000L
         const val DEFAULT_JIRA_SPRINT_ID = JiraSprintFakeBuilder.DEFAULT_ID

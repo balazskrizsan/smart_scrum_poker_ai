@@ -12,12 +12,11 @@ class OpenAiFormatterService_JiraIssueToTextTest : AbstractTest() {
     @DisplayName("Complex Jira Ticket JSON / Returns formatted text")
     fun complexJiraTicketJson_returnsFormattedText() {
         // Arrange
-        val testedJson = JiraHelper.detailedJiraIssueJson
-
+        val tested = JiraHelper.detailedJiraIssueJson
         val expected = JiraHelper.detailedJiraIssueText
 
         // Act
-        val actual = createInstance(OpenAiFormatterService::class.java).jiraIssueToText(testedJson)
+        val actual = createInstance(OpenAiFormatterService::class.java).jiraIssueToText(tested)
 
         // Assert
         assertThat(actual).isEqualTo(expected)

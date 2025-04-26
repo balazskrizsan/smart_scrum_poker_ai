@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class OpenAiFormatterService {
+    companion object {
+        private val objectMapper: ObjectMapper = jacksonObjectMapper()
+    }
+
     fun jiraIssueToText(jsonText: String): String {
-        val objectMapper: ObjectMapper = jacksonObjectMapper()
         val issue: JiraIssue = objectMapper.readValue(jsonText)
         val builder = StringBuilder()
 
