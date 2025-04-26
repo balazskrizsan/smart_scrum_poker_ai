@@ -31,7 +31,7 @@ class JiraIssueEmbeddingService_CreateEmbeddingTest : AbstractTest() {
         createInstance(JiraIssueEmbeddingService::class.java, mocks).createEmbedding(tested)
 
         // Assert
-        val actual = getDSLContext().selectFrom(jiraTicketEmbeddingsTable).fetchOneInto(JiraIssueEmbedding::class.java)
+        val actual = getDSLContext().selectFrom(jiraIssueEmbeddingsTable).fetchOneInto(JiraIssueEmbedding::class.java)
 
         assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(excepted)
     }

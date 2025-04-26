@@ -13,5 +13,7 @@ class EmbeddingConfigFakeBuilder {
     private var embeddingModel: EmbeddingModel = DEFAULT_EMBEDDING_MODEL
     private var rawText = DEFAULT_RAW_TEXT
 
+    fun rawText(rawText: String) = apply { this.rawText = rawText }
+
     fun build() = EmbeddingConfig(embeddingModel, rawText)
 }

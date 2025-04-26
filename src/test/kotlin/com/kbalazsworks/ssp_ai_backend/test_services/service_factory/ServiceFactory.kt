@@ -7,6 +7,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.repositories.CompanyRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraBoardRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
+import com.kbalazsworks.ssp_ai_backend.domain.repositories.QuestionRepository
 import com.openai.client.OpenAIClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -23,6 +24,7 @@ class ServiceFactory(
     private val jiraSprintRepository: JiraSprintRepository,
     private val companyRepository: CompanyRepository,
     private val jiraBoardRepository: JiraBoardRepository,
+    private val questionRepository: QuestionRepository,
     private val openAIClient: OpenAIClient,
     private val localDateTimeFactory: LocalDateTimeFactory,
     private val dateFactory: DateFactory,
