@@ -1,6 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.api.services
 
-import com.kbalazsworks.ssp_ai_backend.api.requests.EmbeddingRequest
+import com.kbalazsworks.ssp_ai_backend.api.requests.jira_issue.JiraIssuePostRequest
 import com.kbalazsworks.ssp_ai_backend.api.requests.company.CompanyPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.requests.jira_board.JiraBoardPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.requests.jira_sprint.JiraSprintPostRequest
@@ -12,7 +12,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateJiraIssueEmbed
 
 class RequestMapperService {
     companion object {
-        fun map(request: EmbeddingRequest) = CreateJiraIssueEmbedding(request.jiraSprintId, request.jiraIssueJson)
+        fun map(request: JiraIssuePostRequest) = CreateJiraIssueEmbedding(request.jiraSprintId, request.jiraIssueJson)
 
         fun map(state: State, request: CompanyPostRequest) = Company(null, request.name, state.localDateTime)
 
