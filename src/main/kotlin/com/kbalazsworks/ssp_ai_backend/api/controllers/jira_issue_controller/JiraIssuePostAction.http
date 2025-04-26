@@ -1,4 +1,4 @@
-POST {{host}}/api/v1/embedding
+POST {{host}}/api/v1/jira-issue
 Content-Type: application/json
 Accept: application/json
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5

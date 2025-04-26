@@ -25,7 +25,7 @@ class JiraSprintPostAction(
     }
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
-    fun store(@Valid @RequestBody request: JiraSprintPostRequest): ResponseEntity<ResponseData<String>> {
+    fun post(@Valid @RequestBody request: JiraSprintPostRequest): ResponseEntity<ResponseData<String>> {
         logger.info("Api call: POST:{}", "/api/v1/jira-board")
 
         jiraSprintService.save(RequestMapperService.map(stateService.getSnapshot(), request))

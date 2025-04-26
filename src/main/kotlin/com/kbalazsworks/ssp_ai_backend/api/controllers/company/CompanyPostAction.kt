@@ -25,7 +25,7 @@ class CompanyPostAction(
     }
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
-    fun store(@Valid @RequestBody request: CompanyPostRequest): ResponseEntity<ResponseData<String>> {
+    fun post(@Valid @RequestBody request: CompanyPostRequest): ResponseEntity<ResponseData<String>> {
         logger.info("Api call: POST:{}", "/api/v1/company")
 
         companyService.save(RequestMapperService.map(stateService.getSnapshot(), request))
