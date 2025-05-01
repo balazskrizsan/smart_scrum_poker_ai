@@ -9,7 +9,9 @@ import com.openai.models.embeddings.CreateEmbeddingResponse
 import com.openai.models.embeddings.EmbeddingModel
 import com.pgvector.PGvector
 import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Service
 
+@Service
 class QuestionService(
     private val openAiService: OpenAiService,
     private val questionRepository: QuestionRepository,
@@ -34,6 +36,8 @@ class QuestionService(
             localDateTimeFactory.create()
         ))
     }
+
+    fun get(id: Long) = questionRepository._getOneById(id)
 
     private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =
         PGvector(embeddingResult.data().first().embedding().toDoubleArray().map { it.toFloat() })

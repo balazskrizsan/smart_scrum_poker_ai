@@ -5,4 +5,6 @@ import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraSprint
 import org.springframework.stereotype.Repository
 
 @Repository
-class JiraSprintRepository(jooqService: JooqService) : AbstractCrudRepository<JiraSprint>(jooqService)
+class JiraSprintRepository(jooqService: JooqService) : AbstractCrudRepository<JiraSprint>(jooqService) {
+    override fun getEntityClass() = JiraSprint::class.java
+}

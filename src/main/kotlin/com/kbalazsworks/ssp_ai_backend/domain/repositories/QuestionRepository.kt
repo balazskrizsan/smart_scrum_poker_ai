@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class QuestionRepository(private val jooqService: JooqService) : AbstractCrudRepository<Question>(jooqService) {
+    override fun getEntityClass() = Question::class.java
+
     companion object {
         private val table = Question.DB_TABLE;
     }
