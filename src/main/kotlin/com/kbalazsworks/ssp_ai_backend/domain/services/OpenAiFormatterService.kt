@@ -17,25 +17,63 @@ class OpenAiFormatterService {
         val builder = StringBuilder()
 
         builder.appendLine("Ticket: ${issue.key}")
-        issue.id.let { builder.appendLine("Ticket-ID: $it") }
-        issue.fields.summary?.let { builder.appendLine("Summary: $it") }
-        issue.fields.description?.let { builder.appendLine("Description: $it") }
-        issue.fields.issuetype?.name?.let { builder.appendLine("Type: $it") }
-        issue.fields.priority?.name?.let { builder.appendLine("Priority: $it") }
-        issue.fields.status?.name?.let { builder.appendLine("Current status: $it") }
-        issue.fields.assignee?.displayName?.let { builder.appendLine("Current assignee: $it") }
-        issue.fields.reporter?.displayName?.let { builder.appendLine("Reported by: $it") }
-        issue.fields.created?.let { builder.appendLine("Created: $it") }
-        issue.fields.updated?.let { builder.appendLine("Last updated: $it") }
-        issue.changelog?.let {
+        builder.appendLine("Ticket-ID: ${issue.id}")
+        builder.appendLine("Summary: ${issue.fields.summary}")
+        builder.appendLine("Description: ${issue.fields.description}")
+        builder.appendLine("Type: ${issue.fields.issuetype.name}")
+        builder.appendLine("Priority: ${issue.fields.priority.name}")
+        builder.appendLine("Current status: ${issue.fields.status.name}")
+        builder.appendLine("Current assignee: ${issue.fields.assignee.displayName}")
+        builder.appendLine("Reported by: ${issue.fields.reporter.displayName}")
+        builder.appendLine("Created: ${issue.fields.created}")
+        builder.appendLine("Last updated: ${issue.fields.updated}")
+        builder.appendLine("Story Points: ${issue.fields.customfield_10016}")
+        builder.appendLine("Watcher count: ${issue.fields.watcher.watchCount}")
+        builder.appendLine("Is watching: ${issue.fields.watcher.isWatching}")
+        if (issue.fields.attachment.isNotEmpty()) {
+            builder.appendLine("Attachments:")
+            issue.fields.attachment.forEach { att ->
+                builder.appendLine("- ${att.filename} (${att.mimeType}, ${att.size} bytes), uploaded by ${att.author.displayName} at ${att.created}")
+            }
+        }
+        if (issue.fields.comment.isNotEmpty()) {
+            builder.appendLine("Comments:")
+            issue.fields.comment.forEach { comment ->
+                builder.appendLine("- ${comment.author.displayName} at ${comment.created}: ${comment.body}")
+            }
+        }
+        if (issue.fields.issuelinks.isNotEmpty()) {
+            builder.appendLine("Issue Links:")
+            issue.fields.issuelinks.forEach { link ->
+                builder.appendLine("- ${link.type.name}: Linked to ${link.outwardIssue.key} (Status: ${link.outwardIssue.fields.status.name})")
+            }
+        }
+        if (issue.fields.subTasks.isNotEmpty()) {
+            builder.appendLine("Sub-Tasks:")
+            issue.fields.subTasks.forEach { subTask ->
+                builder.appendLine("- ${subTask.type.name}: ${subTask.outwardIssue.key} (Status: ${subTask.outwardIssue.fields.status.name})")
+            }
+        }
+        if (issue.fields.worklog.isNotEmpty()) {
+            builder.appendLine("Worklogs:")
+            issue.fields.worklog.forEach { worklog ->
+                builder.appendLine("- ${worklog.author.displayName} logged ${worklog.timeSpent} at ${worklog.started}: ${worklog.comment}")
+            }
+        }
+        issue.fields.timetracking?.let { tt ->
+            builder.appendLine("Time Tracking:")
+            builder.appendLine("- Original Estimate: ${tt.originalEstimate}")
+            builder.appendLine("- Remaining Estimate: ${tt.remainingEstimate}")
+            builder.appendLine("- Time Spent: ${tt.timeSpent}")
+        }
+        if (issue.changelog.histories.isNotEmpty()) {
             builder.appendLine("History:")
-            it.histories.sortedBy { h -> h.created }.forEach { history ->
-                val changes = history.items.filter { item -> item.field in listOf("status", "assignee") }
-                    .joinToString("; ") { item ->
-                        "${item.field}: '${item.fromString ?: "-"}' → '${item.toString ?: "-"}'"
-                    }
+            issue.changelog.histories.forEach { history ->
+                val changes = history.items.joinToString("; ") { item ->
+                    "${item.field}: '${item.fromString ?: "-"}' → '${item.toString ?: "-"}'"
+                }
                 if (changes.isNotBlank()) {
-                    builder.appendLine("- ${history.created}: $changes")
+                    builder.appendLine("- ${history.created} by ${history.author.displayName}: $changes")
                 }
             }
         }
