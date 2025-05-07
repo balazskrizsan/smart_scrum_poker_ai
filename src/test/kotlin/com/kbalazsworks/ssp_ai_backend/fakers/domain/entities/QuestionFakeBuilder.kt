@@ -27,5 +27,10 @@ class QuestionFakeBuilder {
     fun withEmbedding3072(embedding: PGvector?) = apply { this.embedding3072 = embedding }
     fun withCreatedAt(createdAt: LocalDateTime) = apply { this.createdAt = createdAt }
 
+    fun withRealEmbeddedQuestion1() = apply {
+        question = EmbeddingHelper.question1text
+        embedding1536 = PGvector(EmbeddingHelper.question1floatList)
+    }
+
     fun build() = Question(id, question, embedding1536, embedding3072, createdAt)
 }
