@@ -1,0 +1,22 @@
+### Successfull create
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "detailed question"
+}
+
+### Bad request
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": ""
+}
+

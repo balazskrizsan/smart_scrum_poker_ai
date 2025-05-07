@@ -1,0 +1,57 @@
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "What was the biggest challenge during the sprint, and how was it resolved?"
+}
+
+###
+
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "Which tasks had unclear requirements or changed scope mid-sprint?"
+}
+
+###
+
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "Which tickets caused the most blockers or delays during this sprint?"
+}
+
+###
+
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "Are there any signs of technical debt being addressed in this sprint?"
+}
+
+###
+
+POST {{host}}/api/v1/question
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "question": "Were there any tasks that took significantly longer than initially estimated?"
+}
