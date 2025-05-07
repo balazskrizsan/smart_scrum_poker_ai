@@ -28,13 +28,15 @@ class QuestionService(
 
         val result = openAiService.createEmbedding(config)
 
-        questionRepository.save(Question(
-            null,
-            createQuestionEmbedding.question,
-            mapEmbeddingResult(result),
-            null,
-            localDateTimeFactory.create()
-        ))
+        questionRepository.save(
+            Question(
+                null,
+                createQuestionEmbedding.question,
+                mapEmbeddingResult(result),
+                null,
+                localDateTimeFactory.create()
+            )
+        )
     }
 
     fun get(id: Long) = questionRepository._getOneById(id)
