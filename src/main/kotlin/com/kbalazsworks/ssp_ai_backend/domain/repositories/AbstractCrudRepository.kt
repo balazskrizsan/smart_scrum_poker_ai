@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.domain.repositories
 
 import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
-import com.kbalazsworks.ssp_ai_backend.domain.exceptions.ClassService
+import com.kbalazsworks.ssp_ai_backend.jooq_orm.services.ClassService
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.orm.OrmException
 import org.springframework.stereotype.Repository
 
