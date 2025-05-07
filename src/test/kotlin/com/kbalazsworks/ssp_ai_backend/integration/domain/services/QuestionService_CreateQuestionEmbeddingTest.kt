@@ -11,7 +11,7 @@ import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class QuestionService_CreateQuestionJiraIssueTest : AbstractTest() {
+class QuestionService_CreateQuestionEmbeddingTest : AbstractTest() {
     @Test
     @SqlPreset
     fun validQuestion_embeddedSavedToDb() {
