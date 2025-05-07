@@ -3,6 +3,7 @@ package com.kbalazsworks.ssp_ai_backend.domain.services
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
 import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraIssueEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
+import com.kbalazsworks.ssp_ai_backend.domain.value_objects.AskAi
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateJiraIssueEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.EmbeddingConfig
 import com.openai.models.embeddings.CreateEmbeddingResponse
@@ -46,4 +47,6 @@ class JiraIssueEmbeddingService(
 
     private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =
         PGvector(embeddingResult.data().first().embedding().toDoubleArray().map { it.toFloat() })
+
+    fun similaritySearch(askAi: AskAi) = jiraIssueEmbeddingRepository.similaritySearch(askAi)
 }

@@ -39,6 +39,7 @@ class Insert18JiraIssue(
         for (jiraIssueEmbedding in realEmbeddedJiraIssues) {
             jooqService.getDslContext()
                 .insertInto(JIRA_TICKET_EMBEDDINGS)
+                .set(JIRA_TICKET_EMBEDDINGS.ID, jiraIssueEmbedding.id)
                 .set(JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
                 .set(JIRA_TICKET_EMBEDDINGS.RAW_JSON, jiraIssueEmbedding.rawJson)
                 .set(JIRA_TICKET_EMBEDDINGS.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
