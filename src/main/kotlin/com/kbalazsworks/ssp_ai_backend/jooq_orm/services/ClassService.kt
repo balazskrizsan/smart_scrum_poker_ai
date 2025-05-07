@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.domain.exceptions
+package com.kbalazsworks.ssp_ai_backend.jooq_orm.services
 
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.orm.OrmConstants
 import org.jooq.impl.TableImpl
