@@ -1,40 +1,40 @@
 package com.kbalazsworks.ssp_ai_backend.domain.repositories
 
 import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
-import com.kbalazsworks.ssp_ai_backend.jooq_orm.services.ClassService
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.orm.OrmException
+import com.kbalazsworks.ssp_ai_backend.jooq_orm.exceptions.OrmException
+import com.kbalazsworks.ssp_ai_backend.jooq_orm.value_objects.TableMeta
+import org.jooq.TableField
+import org.jooq.UpdatableRecord
+import org.jooq.impl.TableImpl
 import org.springframework.stereotype.Repository
 
 @Repository
-abstract class AbstractCrudRepository<T>(private val jooqService: JooqService) : AbstractRepository(jooqService) {
+@Suppress("FunctionName")
+abstract class AbstractCrudRepository<ENTITY, TABLE_TYPE : TableImpl<RECORD_TYPE>, RECORD_TYPE : UpdatableRecord<*>>
+    (jooqService: JooqService) : AbstractRepository(jooqService) {
+    abstract val tableMeta: TableMeta<ENTITY, TABLE_TYPE>
 
-    abstract fun getEntityClass(): Class<T>
+    fun _save(entity: ENTITY): ENTITY = getCtx()
+        .newRecord(tableMeta.table, entity).also { it.store() }
+        .into(tableMeta.entityClass)
 
-    fun ormSave(entity: T): T {
-        val nonNullEntityClass = entity!!::class.java
+    fun _fetchOne(): ENTITY = getCtx()
+        .selectFrom(tableMeta.table)
+        .fetchOneInto(tableMeta.entityClass)
+        ?: throwNotFound()
 
-        val record = jooqService.getDslContext().newRecord(ClassService.getTableName(nonNullEntityClass), entity)
-        record.store()
+    fun _getOneById(id: Long): ENTITY = getCtx()
+        .selectFrom(tableMeta.table)
+        .where(getIdField().eq(id))
+        .fetchOneInto(tableMeta.entityClass)
+        ?: throwNotFound()
 
-        return record.into(nonNullEntityClass) as T
-    }
+    fun _delete(id: Long) = getCtx()
+        .deleteFrom(tableMeta.table)
+        .where(getIdField().eq(id))
+        .execute()
 
-    fun ormFetchOne(entityClass: Class<T>): T {
-        return jooqService.getDslContext().selectFrom(ClassService.getTableName(entityClass)).fetchOneInto(entityClass)
-            ?: throw OrmException("Entity not found")
-    }
+    private fun getIdField() = tableMeta.table.primaryKey?.fields?.first() as TableField<RECORD_TYPE, Any?>
 
-    @Suppress("FunctionName")
-    fun _getOneById(id: Long): T {
-        val table = ClassService.getTableName(getEntityClass())
-
-        val idField = table.field("id", Long::class.java)
-            ?: throw OrmException("ID field not found in table ${table.name}")
-
-        return jooqService.getDslContext()
-            .selectFrom(table)
-            .where(idField.eq(id))
-            .fetchOneInto(getEntityClass())
-            ?: throw OrmException("Record not found")
-    }
+    private fun throwNotFound(): Nothing = throw OrmException("Record not found")
 }

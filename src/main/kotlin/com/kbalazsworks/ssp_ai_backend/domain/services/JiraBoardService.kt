@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class JiraBoardService(private val jiraBoardRepository: JiraBoardRepository) {
-    fun save(jiraBoard: JiraBoard) = jiraBoardRepository.ormSave(jiraBoard)
+    fun save(jiraBoard: JiraBoard) = jiraBoardRepository._save(jiraBoard)
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class JiraSprintService(private val jiraSprintRepository: JiraSprintRepository) {
-    fun save(jiraSprint: JiraSprint) = jiraSprintRepository.ormSave(jiraSprint)
+    fun save(jiraSprint: JiraSprint) = jiraSprintRepository._save(jiraSprint)
 }

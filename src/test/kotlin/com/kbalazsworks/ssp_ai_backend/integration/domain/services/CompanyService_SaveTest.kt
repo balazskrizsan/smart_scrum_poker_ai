@@ -1,7 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.integration.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
-import com.kbalazsworks.ssp_ai_backend.domain.entities.Company
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.CompanyRepository
 import com.kbalazsworks.ssp_ai_backend.domain.services.CompanyService
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.entities.CompanyFakeBuilder
@@ -25,7 +24,7 @@ class CompanyService_SaveTest : AbstractTest() {
         createInstance(CompanyService::class.java).save(tested)
 
         // Assert
-        val actual = companyRepository.ormFetchOne(Company::class.java)
+        val actual = companyRepository._fetchOne()
         assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected)
     }
 }

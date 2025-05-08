@@ -2,7 +2,6 @@ package com.kbalazsworks.ssp_ai_backend.integration.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1JiraBoard
-import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraSprint
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
 import com.kbalazsworks.ssp_ai_backend.domain.services.JiraSprintService
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.entities.JiraSprintFakeBuilder
@@ -26,7 +25,7 @@ class JiraSprintService_SaveTest : AbstractTest() {
         createInstance(JiraSprintService::class.java).save(tested)
 
         // Assert
-        val actual = jiraSprintRepository.ormFetchOne(JiraSprint::class.java)
+        val actual = jiraSprintRepository._fetchOne()
         assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected)
     }
 }
