@@ -4,60 +4,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraIssueEmbedding
 import com.kbalazsworks.ssp_ai_backend.helpers.DateTimeHelper
 import com.kbalazsworks.ssp_ai_backend.helpers.EmbeddingHelper
 import com.kbalazsworks.ssp_ai_backend.helpers.JiraHelper
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue101openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue101openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue101prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue102openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue102openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue102prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue103openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue103openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue103prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue104openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue104openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue104prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue105openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue105openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue105prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue106openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue106openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue106prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue107openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue107openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue107prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue108openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue108openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue108prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue109openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue109openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue109prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue110openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue110openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue110prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue111openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue111openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue111prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue112openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue112openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue112prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue113openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue113openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue113prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue114openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue114openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue114prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue115openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue115openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue115prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue116openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue116openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue116prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue117openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue117openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue117prettyJson
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue118openAiCompatibleText
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue118openAiEmbeddedPgVector
-import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.issue118prettyJson
+import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.*
 import java.time.LocalDateTime
 
 class JiraIssueEmbeddingFakeBuilder {
@@ -90,6 +37,8 @@ class JiraIssueEmbeddingFakeBuilder {
     )
 
     fun id(id: Long?) = apply { this.id = id }
+    fun withOpenaiCompatibleText(openaiCompatibleText: String) =
+        apply { this.openaiCompatibleText = openaiCompatibleText }
 
     fun withRealEmbeddedJiraIssue101() = apply {
         id = 100101
