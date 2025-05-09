@@ -13,7 +13,7 @@ import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class JiraIssueEmbeddingService_AskAiTest : AbstractTest() {
+class JiraIssueEmbeddingService_SimilaritySearchTest : AbstractTest() {
 
     @Test
     @SqlPreset(presets = [Insert1Question::class, Insert18JiraIssue::class], truncateAfter = false)
