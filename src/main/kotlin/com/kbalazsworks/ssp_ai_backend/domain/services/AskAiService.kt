@@ -22,7 +22,7 @@ class AskAiService(
         val jiraIssueSimilarityList = jiraIssueEmbeddingService.similaritySearch(askAi)
         val chatLimitedTickets = aiPromptServiceService.getLimitedPrompt(jiraIssueSimilarityList)
 
-        val params: ChatCompletionCreateParams = ChatCompletionCreateParams.builder()
+        val params = ChatCompletionCreateParams.builder()
             .addUserMessage(buildPromptMessage(question.question, chatLimitedTickets))
             .model(ChatModel.GPT_3_5_TURBO)
             .build()
