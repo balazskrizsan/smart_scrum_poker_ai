@@ -8,6 +8,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraBoardRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.QuestionRepository
+import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
 import com.openai.client.OpenAIClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -19,6 +20,7 @@ import java.util.*
 
 @Service
 class ServiceFactory(
+    private val sqsService: SqsService,
     private val jooqService: JooqService,
     private val jiraIssueEmbeddingRepository: JiraIssueEmbeddingRepository,
     private val jiraSprintRepository: JiraSprintRepository,

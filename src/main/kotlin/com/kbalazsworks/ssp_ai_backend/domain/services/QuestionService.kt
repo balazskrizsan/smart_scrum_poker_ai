@@ -1,8 +1,12 @@
 package com.kbalazsworks.ssp_ai_backend.domain.services
 
+import com.kbalazsworks.ssp_ai_backend.common.extensions.onFailure
+import com.kbalazsworks.ssp_ai_backend.common.extensions.onSuccess
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
+import com.kbalazsworks.ssp_ai_backend.domain.common_module.constants.SqsMessages.Companion.QUESTION_QUEUE_REQUEST
 import com.kbalazsworks.ssp_ai_backend.domain.entities.Question
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.QuestionRepository
+import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateQuestionEmbedding
 import com.openai.models.embeddings.CreateEmbeddingResponse
 import com.pgvector.PGvector
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class QuestionService(
+    private val sqsService: SqsService,
     private val questionRepository: QuestionRepository,
     private val localDateTimeFactory: LocalDateTimeFactory,
 ) {
@@ -21,9 +26,13 @@ class QuestionService(
     fun createQuestionEmbedding(createQuestionEmbedding: CreateQuestionEmbedding) {
         logger.info("Create question embedding")
 
-        questionRepository.save(Question(null, createQuestionEmbedding.question, localDateTimeFactory.create()))
+        val question = questionRepository.save(
+            Question(null, createQuestionEmbedding.question, localDateTimeFactory.create())
+        )
 
-        // @todo: add to queue
+        sqsService.sendMessage(QUESTION_QUEUE_REQUEST.format(question.id))
+            .onSuccess { logger.info("SQS message sent: {}", it) }
+            .onFailure { logger.error("Error sending SQS message: {}", it.message, it) }
     }
 
     fun get(id: Long) = questionRepository._getOneById(id)
