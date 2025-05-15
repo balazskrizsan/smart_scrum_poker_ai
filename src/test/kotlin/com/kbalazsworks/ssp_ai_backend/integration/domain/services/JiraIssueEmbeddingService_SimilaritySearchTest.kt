@@ -1,8 +1,8 @@
 package com.kbalazsworks.ssp_ai_backend.integration.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
-import com.kbalazsworks.ssp_ai_backend.db_preset.Insert18JiraIssue
-import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1Question
+import com.kbalazsworks.ssp_ai_backend.db_preset.Insert18VectorStore1536WithJiraIssue
+import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1VectorStore1536WithQuestion
 import com.kbalazsworks.ssp_ai_backend.domain.services.JiraIssueEmbeddingService
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.AskAi
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.JiraIssueSimilarity
@@ -14,9 +14,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class JiraIssueEmbeddingService_SimilaritySearchTest : AbstractTest() {
-
     @Test
-    @SqlPreset(presets = [Insert1Question::class, Insert18JiraIssue::class], truncateAfter = false)
+    @SqlPreset(presets = [Insert18VectorStore1536WithJiraIssue::class, Insert1VectorStore1536WithQuestion::class])
     fun similaritySearchQuestion() {
         // Arrange
         val testedAskSprint = AskAi(QuestionFakeBuilder.DEFAULT_ID, JiraSprintFakeBuilder.DEFAULT_ID)

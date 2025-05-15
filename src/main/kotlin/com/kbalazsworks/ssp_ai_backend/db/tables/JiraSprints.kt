@@ -5,11 +5,11 @@ package com.kbalazsworks.ssp_ai_backend.db.tables
 
 
 import com.kbalazsworks.ssp_ai_backend.db.Public
+import com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_ISSUES__JIRA_ISSUES_JIRA_SPRINT_ID_FKEY
 import com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_SPRINTS_PKEY
 import com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_SPRINTS__JIRA_SPRINTS_JIRA_BOARD_ID_FKEY
-import com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_TICKET_EMBEDDINGS__JIRA_TICKET_EMBEDDINGS_JIRA_SPRINT_ID_FKEY
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards.JiraBoardsPath
-import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings.JiraTicketEmbeddingsPath
+import com.kbalazsworks.ssp_ai_backend.db.tables.JiraIssues.JiraIssuesPath
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraSprintsRecord
 
 import java.time.LocalDateTime
@@ -149,21 +149,21 @@ open class JiraSprints(
     val jiraBoards: JiraBoardsPath
         get(): JiraBoardsPath = jiraBoards()
 
-    private lateinit var _jiraTicketEmbeddings: JiraTicketEmbeddingsPath
+    private lateinit var _jiraIssues: JiraIssuesPath
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>public.jira_ticket_embeddings</code> table
+     * Get the implicit to-many join path to the <code>public.jira_issues</code>
+     * table
      */
-    fun jiraTicketEmbeddings(): JiraTicketEmbeddingsPath {
-        if (!this::_jiraTicketEmbeddings.isInitialized)
-            _jiraTicketEmbeddings = JiraTicketEmbeddingsPath(this, null, JIRA_TICKET_EMBEDDINGS__JIRA_TICKET_EMBEDDINGS_JIRA_SPRINT_ID_FKEY.inverseKey)
+    fun jiraIssues(): JiraIssuesPath {
+        if (!this::_jiraIssues.isInitialized)
+            _jiraIssues = JiraIssuesPath(this, null, JIRA_ISSUES__JIRA_ISSUES_JIRA_SPRINT_ID_FKEY.inverseKey)
 
-        return _jiraTicketEmbeddings;
+        return _jiraIssues;
     }
 
-    val jiraTicketEmbeddings: JiraTicketEmbeddingsPath
-        get(): JiraTicketEmbeddingsPath = jiraTicketEmbeddings()
+    val jiraIssues: JiraIssuesPath
+        get(): JiraIssuesPath = jiraIssues()
     override fun `as`(alias: String): JiraSprints = JiraSprints(DSL.name(alias), this)
     override fun `as`(alias: Name): JiraSprints = JiraSprints(alias, this)
     override fun `as`(alias: Table<*>): JiraSprints = JiraSprints(alias.qualifiedName, this)

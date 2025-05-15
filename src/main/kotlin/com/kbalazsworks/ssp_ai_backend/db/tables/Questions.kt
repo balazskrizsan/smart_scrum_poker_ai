@@ -4,11 +4,13 @@
 package com.kbalazsworks.ssp_ai_backend.db.tables
 
 
-import com.kbalazsworks.ssp_ai_backend.common.binder.PgVectorBinding
 import com.kbalazsworks.ssp_ai_backend.db.Public
 import com.kbalazsworks.ssp_ai_backend.db.keys.QUESTIONS_PKEY
+import com.kbalazsworks.ssp_ai_backend.db.keys.VECTOR_STORE_1536__VECTOR_STORE_1536_QUESTION_ID_FKEY
+import com.kbalazsworks.ssp_ai_backend.db.keys.VECTOR_STORE_3072__VECTOR_STORE_3072_QUESTION_ID_FKEY
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_1536.VectorStore_1536Path
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_3072.VectorStore_3072Path
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.QuestionsRecord
-import com.pgvector.PGvector
 
 import java.time.LocalDateTime
 
@@ -20,6 +22,7 @@ import org.jooq.ForeignKey
 import org.jooq.Identity
 import org.jooq.InverseForeignKey
 import org.jooq.Name
+import org.jooq.Path
 import org.jooq.PlainSQL
 import org.jooq.QueryPart
 import org.jooq.Record
@@ -32,7 +35,7 @@ import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
-import org.jooq.impl.DefaultDataType
+import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
 
@@ -85,16 +88,6 @@ open class Questions(
     val QUESTION: TableField<QuestionsRecord, String?> = createField(DSL.name("question"), SQLDataType.CLOB.nullable(false), this, "")
 
     /**
-     * The column <code>public.questions.embedding1536</code>.
-     */
-    val EMBEDDING1536: TableField<QuestionsRecord, PGvector?> = createField(DSL.name("embedding1536"), DefaultDataType.getDefaultDataType("\"public\".\"vector\""), this, "", PgVectorBinding())
-
-    /**
-     * The column <code>public.questions.embedding3072</code>.
-     */
-    val EMBEDDING3072: TableField<QuestionsRecord, PGvector?> = createField(DSL.name("embedding3072"), DefaultDataType.getDefaultDataType("\"public\".\"vector\""), this, "", PgVectorBinding())
-
-    /**
      * The column <code>public.questions.created_at</code>.
      */
     val CREATED_AT: TableField<QuestionsRecord, LocalDateTime?> = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "")
@@ -117,9 +110,54 @@ open class Questions(
      * Create a <code>public.questions</code> table reference
      */
     constructor(): this(DSL.name("questions"), null)
+
+    constructor(path: Table<out Record>, childPath: ForeignKey<out Record, QuestionsRecord>?, parentPath: InverseForeignKey<out Record, QuestionsRecord>?): this(Internal.createPathAlias(path, childPath, parentPath), path, childPath, parentPath, QUESTIONS, null, null)
+
+    /**
+     * A subtype implementing {@link Path} for simplified path-based joins.
+     */
+    open class QuestionsPath : Questions, Path<QuestionsRecord> {
+        constructor(path: Table<out Record>, childPath: ForeignKey<out Record, QuestionsRecord>?, parentPath: InverseForeignKey<out Record, QuestionsRecord>?): super(path, childPath, parentPath)
+        private constructor(alias: Name, aliased: Table<QuestionsRecord>): super(alias, aliased)
+        override fun `as`(alias: String): QuestionsPath = QuestionsPath(DSL.name(alias), this)
+        override fun `as`(alias: Name): QuestionsPath = QuestionsPath(alias, this)
+        override fun `as`(alias: Table<*>): QuestionsPath = QuestionsPath(alias.qualifiedName, this)
+    }
     override fun getSchema(): Schema? = if (aliased()) null else Public.PUBLIC
     override fun getIdentity(): Identity<QuestionsRecord, Long?> = super.getIdentity() as Identity<QuestionsRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<QuestionsRecord> = QUESTIONS_PKEY
+
+    private lateinit var _vectorStore_1536: VectorStore_1536Path
+
+    /**
+     * Get the implicit to-many join path to the
+     * <code>public.vector_store_1536</code> table
+     */
+    fun vectorStore_1536(): VectorStore_1536Path {
+        if (!this::_vectorStore_1536.isInitialized)
+            _vectorStore_1536 = VectorStore_1536Path(this, null, VECTOR_STORE_1536__VECTOR_STORE_1536_QUESTION_ID_FKEY.inverseKey)
+
+        return _vectorStore_1536;
+    }
+
+    val vectorStore_1536: VectorStore_1536Path
+        get(): VectorStore_1536Path = vectorStore_1536()
+
+    private lateinit var _vectorStore_3072: VectorStore_3072Path
+
+    /**
+     * Get the implicit to-many join path to the
+     * <code>public.vector_store_3072</code> table
+     */
+    fun vectorStore_3072(): VectorStore_3072Path {
+        if (!this::_vectorStore_3072.isInitialized)
+            _vectorStore_3072 = VectorStore_3072Path(this, null, VECTOR_STORE_3072__VECTOR_STORE_3072_QUESTION_ID_FKEY.inverseKey)
+
+        return _vectorStore_3072;
+    }
+
+    val vectorStore_3072: VectorStore_3072Path
+        get(): VectorStore_3072Path = vectorStore_3072()
     override fun `as`(alias: String): Questions = Questions(DSL.name(alias), this)
     override fun `as`(alias: Name): Questions = Questions(alias, this)
     override fun `as`(alias: Table<*>): Questions = Questions(alias.qualifiedName, this)

@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.db_preset
 
 import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
-import com.kbalazsworks.ssp_ai_backend.db.tables.references.JIRA_TICKET_EMBEDDINGS
+import com.kbalazsworks.ssp_ai_backend.db.tables.references.JIRA_ISSUES
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.entities.JiraIssueEmbeddingFakeBuilder
 import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.IInsert
 import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.PresetRunnerService
@@ -38,13 +38,12 @@ class Insert18JiraIssue(
 
         for (jiraIssueEmbedding in realEmbeddedJiraIssues) {
             jooqService.getDslContext()
-                .insertInto(JIRA_TICKET_EMBEDDINGS)
-                .set(JIRA_TICKET_EMBEDDINGS.ID, jiraIssueEmbedding.id)
-                .set(JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
-                .set(JIRA_TICKET_EMBEDDINGS.RAW_JSON, jiraIssueEmbedding.rawJson)
-                .set(JIRA_TICKET_EMBEDDINGS.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
-                .set(JIRA_TICKET_EMBEDDINGS.EMBEDDING1536, toPgVectorField(jiraIssueEmbedding.embedding1536))
-                .set(JIRA_TICKET_EMBEDDINGS.CREATED_AT, jiraIssueEmbedding.createdAt)
+                .insertInto(JIRA_ISSUES)
+                .set(JIRA_ISSUES.ID, jiraIssueEmbedding.id)
+                .set(JIRA_ISSUES.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
+                .set(JIRA_ISSUES.RAW_JSON, jiraIssueEmbedding.rawJson)
+                .set(JIRA_ISSUES.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
+                .set(JIRA_ISSUES.CREATED_AT, jiraIssueEmbedding.createdAt)
                 .execute()
         }
     }

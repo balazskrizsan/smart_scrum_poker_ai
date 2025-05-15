@@ -1,6 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.integration.domain.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
+import com.kbalazsworks.ssp_ai_backend.db.tables.references.JIRA_ISSUES
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1JiraSprint
 import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraIssueEmbedding
 import com.kbalazsworks.ssp_ai_backend.domain.services.JiraIssueEmbeddingService
@@ -31,7 +32,7 @@ class JiraIssueEmbeddingService_CreateEmbeddingTest : AbstractTest() {
         createInstance(JiraIssueEmbeddingService::class.java, mocks).createEmbedding(tested)
 
         // Assert
-        val actual = getDSLContext().selectFrom(jiraIssueEmbeddingsTable).fetchOneInto(JiraIssueEmbedding::class.java)
+        val actual = getDSLContext().selectFrom(JIRA_ISSUES).fetchOneInto(JiraIssueEmbedding::class.java)
 
         assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(excepted)
     }

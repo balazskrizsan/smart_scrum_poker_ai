@@ -27,9 +27,6 @@ class JiraIssueEmbeddingService(
         logger.info("Create embedding")
 
         val openAiFormattedData = openAiFormatterService.jiraIssueToText(createJiraIssueEmbedding.issueJson)
-        val embeddingResult = openAiService.createEmbedding(
-            EmbeddingConfig(EmbeddingModel.TEXT_EMBEDDING_3_SMALL, openAiFormattedData)
-        )
 
         val jiraIssueEmbedding = jiraIssueEmbeddingRepository.save(
             JiraIssueEmbedding(
@@ -37,12 +34,11 @@ class JiraIssueEmbeddingService(
                 createJiraIssueEmbedding.jiraSprintId,
                 createJiraIssueEmbedding.issueJson,
                 openAiFormattedData,
-                mapEmbeddingResult(embeddingResult),
-                null,
                 localDateTimeFactory.create()
             )
         )
         logger.info("Embedding saved; id#{}", jiraIssueEmbedding.id)
+        // @todo: add to queue
     }
 
     private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =

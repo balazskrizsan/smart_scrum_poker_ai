@@ -7,15 +7,21 @@ package com.kbalazsworks.ssp_ai_backend.db.keys
 import com.kbalazsworks.ssp_ai_backend.db.tables.Companies
 import com.kbalazsworks.ssp_ai_backend.db.tables.FlywaySchemaHistory
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards
+import com.kbalazsworks.ssp_ai_backend.db.tables.JiraIssues
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraSprints
-import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
 import com.kbalazsworks.ssp_ai_backend.db.tables.Questions
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorModels
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_1536
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_3072
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.CompaniesRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.FlywaySchemaHistoryRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraBoardsRecord
+import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraIssuesRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraSprintsRecord
-import com.kbalazsworks.ssp_ai_backend.db.tables.records.JiraTicketEmbeddingsRecord
 import com.kbalazsworks.ssp_ai_backend.db.tables.records.QuestionsRecord
+import com.kbalazsworks.ssp_ai_backend.db.tables.records.VectorModelsRecord
+import com.kbalazsworks.ssp_ai_backend.db.tables.records.VectorStore_1536Record
+import com.kbalazsworks.ssp_ai_backend.db.tables.records.VectorStore_3072Record
 
 import org.jooq.ForeignKey
 import org.jooq.UniqueKey
@@ -31,14 +37,23 @@ import org.jooq.impl.Internal
 val COMPANIES_PKEY: UniqueKey<CompaniesRecord> = Internal.createUniqueKey(Companies.COMPANIES, DSL.name("companies_pkey"), arrayOf(Companies.COMPANIES.ID), true)
 val FLYWAY_SCHEMA_HISTORY_PK: UniqueKey<FlywaySchemaHistoryRecord> = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("flyway_schema_history_pk"), arrayOf(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK), true)
 val JIRA_BOARDS_PKEY: UniqueKey<JiraBoardsRecord> = Internal.createUniqueKey(JiraBoards.JIRA_BOARDS, DSL.name("jira_boards_pkey"), arrayOf(JiraBoards.JIRA_BOARDS.ID), true)
+val JIRA_ISSUES_PKEY: UniqueKey<JiraIssuesRecord> = Internal.createUniqueKey(JiraIssues.JIRA_ISSUES, DSL.name("jira_issues_pkey"), arrayOf(JiraIssues.JIRA_ISSUES.ID), true)
 val JIRA_SPRINTS_PKEY: UniqueKey<JiraSprintsRecord> = Internal.createUniqueKey(JiraSprints.JIRA_SPRINTS, DSL.name("jira_sprints_pkey"), arrayOf(JiraSprints.JIRA_SPRINTS.ID), true)
-val JIRA_TICKET_EMBEDDINGS_PKEY: UniqueKey<JiraTicketEmbeddingsRecord> = Internal.createUniqueKey(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS, DSL.name("jira_ticket_embeddings_pkey"), arrayOf(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS.ID), true)
 val QUESTIONS_PKEY: UniqueKey<QuestionsRecord> = Internal.createUniqueKey(Questions.QUESTIONS, DSL.name("questions_pkey"), arrayOf(Questions.QUESTIONS.ID), true)
+val VECTOR_MODELS_PKEY: UniqueKey<VectorModelsRecord> = Internal.createUniqueKey(VectorModels.VECTOR_MODELS, DSL.name("vector_models_pkey"), arrayOf(VectorModels.VECTOR_MODELS.ID), true)
+val VECTOR_STORE_1536_QUESTION_ID_JIRA_ISSUE_ID_VECTOR_MODEL_ID_KEY: UniqueKey<VectorStore_1536Record> = Internal.createUniqueKey(VectorStore_1536.VECTOR_STORE_1536, DSL.name("vector_store_1536_question_id_jira_issue_id_vector_model_id_key"), arrayOf(VectorStore_1536.VECTOR_STORE_1536.QUESTION_ID, VectorStore_1536.VECTOR_STORE_1536.JIRA_ISSUE_ID, VectorStore_1536.VECTOR_STORE_1536.VECTOR_MODEL_ID), true)
+val VECTOR_STORE_3072_QUESTION_ID_JIRA_ISSUE_ID_VECTOR_MODEL_ID_KEY: UniqueKey<VectorStore_3072Record> = Internal.createUniqueKey(VectorStore_3072.VECTOR_STORE_3072, DSL.name("vector_store_3072_question_id_jira_issue_id_vector_model_id_key"), arrayOf(VectorStore_3072.VECTOR_STORE_3072.QUESTION_ID, VectorStore_3072.VECTOR_STORE_3072.JIRA_ISSUE_ID, VectorStore_3072.VECTOR_STORE_3072.VECTOR_MODEL_ID), true)
 
 // -------------------------------------------------------------------------
 // FOREIGN KEY definitions
 // -------------------------------------------------------------------------
 
 val JIRA_BOARDS__JIRA_BOARDS_COMPANY_ID_FKEY: ForeignKey<JiraBoardsRecord, CompaniesRecord> = Internal.createForeignKey(JiraBoards.JIRA_BOARDS, DSL.name("jira_boards_company_id_fkey"), arrayOf(JiraBoards.JIRA_BOARDS.COMPANY_ID), com.kbalazsworks.ssp_ai_backend.db.keys.COMPANIES_PKEY, arrayOf(Companies.COMPANIES.ID), true)
+val JIRA_ISSUES__JIRA_ISSUES_JIRA_SPRINT_ID_FKEY: ForeignKey<JiraIssuesRecord, JiraSprintsRecord> = Internal.createForeignKey(JiraIssues.JIRA_ISSUES, DSL.name("jira_issues_jira_sprint_id_fkey"), arrayOf(JiraIssues.JIRA_ISSUES.JIRA_SPRINT_ID), com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_SPRINTS_PKEY, arrayOf(JiraSprints.JIRA_SPRINTS.ID), true)
 val JIRA_SPRINTS__JIRA_SPRINTS_JIRA_BOARD_ID_FKEY: ForeignKey<JiraSprintsRecord, JiraBoardsRecord> = Internal.createForeignKey(JiraSprints.JIRA_SPRINTS, DSL.name("jira_sprints_jira_board_id_fkey"), arrayOf(JiraSprints.JIRA_SPRINTS.JIRA_BOARD_ID), com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_BOARDS_PKEY, arrayOf(JiraBoards.JIRA_BOARDS.ID), true)
-val JIRA_TICKET_EMBEDDINGS__JIRA_TICKET_EMBEDDINGS_JIRA_SPRINT_ID_FKEY: ForeignKey<JiraTicketEmbeddingsRecord, JiraSprintsRecord> = Internal.createForeignKey(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS, DSL.name("jira_ticket_embeddings_jira_sprint_id_fkey"), arrayOf(JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS.JIRA_SPRINT_ID), com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_SPRINTS_PKEY, arrayOf(JiraSprints.JIRA_SPRINTS.ID), true)
+val VECTOR_STORE_1536__VECTOR_STORE_1536_JIRA_ISSUE_ID_FKEY: ForeignKey<VectorStore_1536Record, JiraIssuesRecord> = Internal.createForeignKey(VectorStore_1536.VECTOR_STORE_1536, DSL.name("vector_store_1536_jira_issue_id_fkey"), arrayOf(VectorStore_1536.VECTOR_STORE_1536.JIRA_ISSUE_ID), com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_ISSUES_PKEY, arrayOf(JiraIssues.JIRA_ISSUES.ID), true)
+val VECTOR_STORE_1536__VECTOR_STORE_1536_QUESTION_ID_FKEY: ForeignKey<VectorStore_1536Record, QuestionsRecord> = Internal.createForeignKey(VectorStore_1536.VECTOR_STORE_1536, DSL.name("vector_store_1536_question_id_fkey"), arrayOf(VectorStore_1536.VECTOR_STORE_1536.QUESTION_ID), com.kbalazsworks.ssp_ai_backend.db.keys.QUESTIONS_PKEY, arrayOf(Questions.QUESTIONS.ID), true)
+val VECTOR_STORE_1536__VECTOR_STORE_1536_VECTOR_MODEL_ID_FKEY: ForeignKey<VectorStore_1536Record, VectorModelsRecord> = Internal.createForeignKey(VectorStore_1536.VECTOR_STORE_1536, DSL.name("vector_store_1536_vector_model_id_fkey"), arrayOf(VectorStore_1536.VECTOR_STORE_1536.VECTOR_MODEL_ID), com.kbalazsworks.ssp_ai_backend.db.keys.VECTOR_MODELS_PKEY, arrayOf(VectorModels.VECTOR_MODELS.ID), true)
+val VECTOR_STORE_3072__VECTOR_STORE_3072_JIRA_ISSUE_ID_FKEY: ForeignKey<VectorStore_3072Record, JiraIssuesRecord> = Internal.createForeignKey(VectorStore_3072.VECTOR_STORE_3072, DSL.name("vector_store_3072_jira_issue_id_fkey"), arrayOf(VectorStore_3072.VECTOR_STORE_3072.JIRA_ISSUE_ID), com.kbalazsworks.ssp_ai_backend.db.keys.JIRA_ISSUES_PKEY, arrayOf(JiraIssues.JIRA_ISSUES.ID), true)
+val VECTOR_STORE_3072__VECTOR_STORE_3072_QUESTION_ID_FKEY: ForeignKey<VectorStore_3072Record, QuestionsRecord> = Internal.createForeignKey(VectorStore_3072.VECTOR_STORE_3072, DSL.name("vector_store_3072_question_id_fkey"), arrayOf(VectorStore_3072.VECTOR_STORE_3072.QUESTION_ID), com.kbalazsworks.ssp_ai_backend.db.keys.QUESTIONS_PKEY, arrayOf(Questions.QUESTIONS.ID), true)
+val VECTOR_STORE_3072__VECTOR_STORE_3072_VECTOR_MODEL_ID_FKEY: ForeignKey<VectorStore_3072Record, VectorModelsRecord> = Internal.createForeignKey(VectorStore_3072.VECTOR_STORE_3072, DSL.name("vector_store_3072_vector_model_id_fkey"), arrayOf(VectorStore_3072.VECTOR_STORE_3072.VECTOR_MODEL_ID), com.kbalazsworks.ssp_ai_backend.db.keys.VECTOR_MODELS_PKEY, arrayOf(VectorModels.VECTOR_MODELS.ID), true)

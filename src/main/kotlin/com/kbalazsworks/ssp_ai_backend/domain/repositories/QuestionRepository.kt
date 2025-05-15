@@ -18,8 +18,6 @@ class QuestionRepository(private val jooqService: JooqService) : QuestionGeneric
     fun save(question: Question) = jooqService.getDslContext()
         .insertInto(QUESTIONS)
         .set(QUESTIONS.QUESTION, question.question)
-        .set(QUESTIONS.EMBEDDING1536, toPgVectorField(question.embedding1536))
-        .set(QUESTIONS.EMBEDDING3072, toPgVectorField(question.embedding3072))
         .set(QUESTIONS.CREATED_AT, question.createdAt)
         .returning()
         .fetchOneInto(Question::class.java)

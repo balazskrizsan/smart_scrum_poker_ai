@@ -7,9 +7,12 @@ package com.kbalazsworks.ssp_ai_backend.db.tables.references
 import com.kbalazsworks.ssp_ai_backend.db.tables.Companies
 import com.kbalazsworks.ssp_ai_backend.db.tables.FlywaySchemaHistory
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraBoards
+import com.kbalazsworks.ssp_ai_backend.db.tables.JiraIssues
 import com.kbalazsworks.ssp_ai_backend.db.tables.JiraSprints
-import com.kbalazsworks.ssp_ai_backend.db.tables.JiraTicketEmbeddings
 import com.kbalazsworks.ssp_ai_backend.db.tables.Questions
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorModels
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_1536
+import com.kbalazsworks.ssp_ai_backend.db.tables.VectorStore_3072
 
 
 
@@ -29,16 +32,31 @@ val FLYWAY_SCHEMA_HISTORY: FlywaySchemaHistory = FlywaySchemaHistory.FLYWAY_SCHE
 val JIRA_BOARDS: JiraBoards = JiraBoards.JIRA_BOARDS
 
 /**
+ * The table <code>public.jira_issues</code>.
+ */
+val JIRA_ISSUES: JiraIssues = JiraIssues.JIRA_ISSUES
+
+/**
  * The table <code>public.jira_sprints</code>.
  */
 val JIRA_SPRINTS: JiraSprints = JiraSprints.JIRA_SPRINTS
 
 /**
- * The table <code>public.jira_ticket_embeddings</code>.
- */
-val JIRA_TICKET_EMBEDDINGS: JiraTicketEmbeddings = JiraTicketEmbeddings.JIRA_TICKET_EMBEDDINGS
-
-/**
  * The table <code>public.questions</code>.
  */
 val QUESTIONS: Questions = Questions.QUESTIONS
+
+/**
+ * The table <code>public.vector_models</code>.
+ */
+val VECTOR_MODELS: VectorModels = VectorModels.VECTOR_MODELS
+
+/**
+ * The table <code>public.vector_store_1536</code>.
+ */
+val VECTOR_STORE_1536: VectorStore_1536 = VectorStore_1536.VECTOR_STORE_1536
+
+/**
+ * The table <code>public.vector_store_3072</code>.
+ */
+val VECTOR_STORE_3072: VectorStore_3072 = VectorStore_3072.VECTOR_STORE_3072

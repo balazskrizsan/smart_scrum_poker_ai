@@ -4,16 +4,13 @@ import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
 import com.kbalazsworks.ssp_ai_backend.domain.entities.Question
 import com.kbalazsworks.ssp_ai_backend.domain.repositories.QuestionRepository
 import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateQuestionEmbedding
-import com.kbalazsworks.ssp_ai_backend.domain.value_objects.EmbeddingConfig
 import com.openai.models.embeddings.CreateEmbeddingResponse
-import com.openai.models.embeddings.EmbeddingModel
 import com.pgvector.PGvector
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
 class QuestionService(
-    private val openAiService: OpenAiService,
     private val questionRepository: QuestionRepository,
     private val localDateTimeFactory: LocalDateTimeFactory,
 ) {
@@ -24,19 +21,9 @@ class QuestionService(
     fun createQuestionEmbedding(createQuestionEmbedding: CreateQuestionEmbedding) {
         logger.info("Create question embedding")
 
-        val config = EmbeddingConfig(EmbeddingModel.TEXT_EMBEDDING_3_SMALL, createQuestionEmbedding.question)
+        questionRepository.save(Question(null, createQuestionEmbedding.question, localDateTimeFactory.create()))
 
-        val result = openAiService.createEmbedding(config)
-
-        questionRepository.save(
-            Question(
-                null,
-                createQuestionEmbedding.question,
-                mapEmbeddingResult(result),
-                null,
-                localDateTimeFactory.create()
-            )
-        )
+        // @todo: add to queue
     }
 
     fun get(id: Long) = questionRepository._getOneById(id)
