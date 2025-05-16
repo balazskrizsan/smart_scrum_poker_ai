@@ -1,12 +1,13 @@
-package com.kbalazsworks.ssp_ai_backend.domain.sqs_module.listeners
+package com.kbalazsworks.ssp_ai_backend.api.listeners.sqs_listeners
 
 import com.kbalazsworks.ssp_ai_backend.common.services.ApplicationPropertiesService
+import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.EmbedderQueueHandlerService
 import io.awspring.cloud.sqs.annotation.SqsListener
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
-class SqsMessageListener {
+class SqsEmbedderListener(private val embedderQueueHandlerService: EmbedderQueueHandlerService) {
     companion object {
         private val logger = LoggerFactory.getLogger(this::class.java)
     }
@@ -15,7 +16,9 @@ class SqsMessageListener {
         queueNames = ["\${${ApplicationPropertiesService.AWS_SQS_QUEUE_NAME}}"],
         maxMessagesPerPoll = "\${${ApplicationPropertiesService.AWS_SQS_LISTENER_MAX_MESSAGES_PER_POLL}}"
     )
-    fun receiveMessage(message: Any?) {
-        logger.info("SqsListener message received: {}", message)
+    fun receiveMessage(message: String) {
+        logger.info("SQS Message received: {}", message)
+
+        embedderQueueHandlerService.handle(message)
     }
 }
