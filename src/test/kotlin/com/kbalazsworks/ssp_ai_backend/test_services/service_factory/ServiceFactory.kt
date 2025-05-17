@@ -3,11 +3,11 @@ package com.kbalazsworks.ssp_ai_backend.test_services.service_factory
 import com.kbalazsworks.ssp_ai_backend.common.factories.DateFactory
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
 import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.CompanyRepository
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraBoardRepository
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraSprintRepository
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.JiraIssueEmbeddingRepository
-import com.kbalazsworks.ssp_ai_backend.domain.repositories.QuestionRepository
+import com.kbalazsworks.ssp_ai_backend.domain.company_module.repositories.CompanyRepository
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraBoardRepository
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraSprintRepository
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraIssueEmbeddingRepository
+import com.kbalazsworks.ssp_ai_backend.domain.question_module.repositories.QuestionRepository
 import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
 import com.openai.client.OpenAIClient
 import org.slf4j.LoggerFactory

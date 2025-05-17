@@ -5,7 +5,7 @@ import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
 import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.services.StateService
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
-import com.kbalazsworks.ssp_ai_backend.domain.services.JiraBoardService
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.JiraBoardService
 import jakarta.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity

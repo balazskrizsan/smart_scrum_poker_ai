@@ -7,12 +7,12 @@ import com.kbalazsworks.ssp_ai_backend.api.requests.jira_issue.JiraIssuePostRequ
 import com.kbalazsworks.ssp_ai_backend.api.requests.jira_sprint.JiraSprintPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.requests.question.QuestionPostRequest
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.State
-import com.kbalazsworks.ssp_ai_backend.domain.entities.Company
-import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraBoard
-import com.kbalazsworks.ssp_ai_backend.domain.entities.JiraSprint
-import com.kbalazsworks.ssp_ai_backend.domain.value_objects.AskAi
-import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateJiraIssueEmbedding
-import com.kbalazsworks.ssp_ai_backend.domain.value_objects.CreateQuestionEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.company_module.entities.Company
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraBoard
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraSprint
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.CreateJiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.question_module.value_objects.CreateQuestionEmbedding
 
 class RequestMapperService {
     companion object {

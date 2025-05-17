@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.api.controllers.jira_issue_controller
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.jira_issue.JiraIssuePostRequest
-import com.kbalazsworks.ssp_ai_backend.domain.services.JiraIssueEmbeddingService
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.JiraIssueEmbeddingService
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
 import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
