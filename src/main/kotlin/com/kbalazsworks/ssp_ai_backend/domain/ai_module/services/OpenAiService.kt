@@ -14,10 +14,7 @@ class OpenAiService(private val openAIClient: OpenAIClient) {
     }
 
     fun createEmbedding(embeddingConfig: EmbeddingConfig): CreateEmbeddingResponse {
-        logger.info(
-            "OpenAi called; mbeddingModel#{}",
-            embeddingConfig.embeddingModel
-        )
+        logger.info("OpenAi called; embeddingModel#{}", embeddingConfig.embeddingModel)
 
         val params = EmbeddingCreateParams.builder()
             .input(embeddingConfig.rawText)

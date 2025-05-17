@@ -2,7 +2,7 @@ package com.kbalazsworks.ssp_ai_backend.unit.domain.ai_module.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptException
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.services.AiPromptServiceService
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.services.PromptServiceService
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssueSimilarity
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueEmbeddingFakeBuilder
 import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.*
@@ -11,7 +11,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 @Suppress("ClassName")
-class AiPromptServiceService_GetLimitedPromptTest : AbstractTest() {
+class PromptServiceService_GetLimitedPromptTest : AbstractTest() {
     @Test
     fun sendingMultipleJiraIssues_calculatesCorrectly() {
         // Arrange
@@ -35,7 +35,7 @@ class AiPromptServiceService_GetLimitedPromptTest : AbstractTest() {
                 issue106openAiCompatibleText
 
         // Act
-        val actual = createInstance(AiPromptServiceService::class.java).getLimitedPrompt(tested);
+        val actual = createInstance(PromptServiceService::class.java).getLimitedPrompt(tested)
 
         // Assert
         assertThat(actual).isEqualTo(expected)
@@ -58,7 +58,7 @@ class AiPromptServiceService_GetLimitedPromptTest : AbstractTest() {
 
         // Act - Assert
         assertThatThrownBy {
-            createInstance(AiPromptServiceService::class.java).getLimitedPrompt(tested)
+            createInstance(PromptServiceService::class.java).getLimitedPrompt(tested)
         }
             .isInstanceOf(PromptException::class.java)
             .hasMessageContaining(expectedExceptionMessage)

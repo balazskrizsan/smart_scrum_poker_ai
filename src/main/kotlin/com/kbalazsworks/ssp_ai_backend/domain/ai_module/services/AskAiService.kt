@@ -1,6 +1,6 @@
 package com.kbalazsworks.ssp_ai_backend.domain.ai_module.services
 
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.JiraIssueEmbeddingService
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.IssueEmbeddingService
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.services.QuestionService
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
 import com.openai.client.OpenAIClient
@@ -14,15 +14,15 @@ import java.util.*
 
 @Service
 class AskAiService(
-    private val jiraIssueEmbeddingService: JiraIssueEmbeddingService,
+    private val issueEmbeddingService: IssueEmbeddingService,
     private val openAIClient: OpenAIClient,
-    private val aiPromptServiceService: AiPromptServiceService,
+    private val promptServiceService: PromptServiceService,
     private val questionService: QuestionService,
 ) {
     fun askSprint(askAi: AskAi): Flux<String> {
         val question = questionService.get(askAi.questionId)
-        val jiraIssueSimilarityList = jiraIssueEmbeddingService.similaritySearch(askAi)
-        val chatLimitedTickets = aiPromptServiceService.getLimitedPrompt(jiraIssueSimilarityList)
+        val jiraIssueSimilarityList = issueEmbeddingService.similaritySearch(askAi)
+        val chatLimitedTickets = promptServiceService.getLimitedPrompt(jiraIssueSimilarityList)
 
         val params = ChatCompletionCreateParams.builder()
             .addUserMessage(buildPromptMessage(question.question, chatLimitedTickets))
@@ -32,7 +32,7 @@ class AskAiService(
         return askOpenAi(params)
     }
 
-    fun buildPromptMessage(question: String, charLimitedTickets: String) = """
+    private fun buildPromptMessage(question: String, charLimitedTickets: String) = """
             Question:
              ${question}
 

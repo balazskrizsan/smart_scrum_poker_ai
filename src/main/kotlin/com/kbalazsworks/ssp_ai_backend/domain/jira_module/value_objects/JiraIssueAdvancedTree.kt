@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects
+package com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects
 
 data class JiraIssue(
     val id: String,

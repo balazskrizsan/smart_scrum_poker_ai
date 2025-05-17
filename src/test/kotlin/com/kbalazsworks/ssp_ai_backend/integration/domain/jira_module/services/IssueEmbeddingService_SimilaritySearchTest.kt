@@ -3,7 +3,7 @@ package com.kbalazsworks.ssp_ai_backend.integration.domain.jira_module.services
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert18VectorStore1536WithJiraIssue
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1VectorStore1536WithQuestion
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.JiraIssueEmbeddingService
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.IssueEmbeddingService
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssueSimilarity
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueEmbeddingFakeBuilder
@@ -13,7 +13,8 @@ import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class JiraIssueEmbeddingService_SimilaritySearchTest : AbstractTest() {
+@Suppress("ClassName")
+class IssueEmbeddingService_SimilaritySearchTest : AbstractTest() {
     @Test
     @SqlPreset(presets = [Insert18VectorStore1536WithJiraIssue::class, Insert1VectorStore1536WithQuestion::class])
     fun similaritySearchQuestion() {
@@ -34,7 +35,7 @@ class JiraIssueEmbeddingService_SimilaritySearchTest : AbstractTest() {
         )
 
         // Act
-        val actual = createInstance(JiraIssueEmbeddingService::class.java).similaritySearch(testedAskSprint)
+        val actual = createInstance(IssueEmbeddingService::class.java).similaritySearch(testedAskSprint)
 
         // Assert
         assertThat(actual).isEqualTo(expected)

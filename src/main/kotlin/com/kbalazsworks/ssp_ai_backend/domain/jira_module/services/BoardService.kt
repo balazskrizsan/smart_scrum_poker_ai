@@ -5,6 +5,6 @@ import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraBoard
 import org.springframework.stereotype.Service
 
 @Service
-class JiraBoardService(private val jiraBoardRepository: JiraBoardRepository) {
+class BoardService(private val jiraBoardRepository: JiraBoardRepository) {
     fun save(jiraBoard: JiraBoard) = jiraBoardRepository._save(jiraBoard)
 }

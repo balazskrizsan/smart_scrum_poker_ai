@@ -5,6 +5,6 @@ import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraSprin
 import org.springframework.stereotype.Service
 
 @Service
-class JiraSprintService(private val jiraSprintRepository: JiraSprintRepository) {
+class SprintService(private val jiraSprintRepository: JiraSprintRepository) {
     fun save(jiraSprint: JiraSprint) = jiraSprintRepository._save(jiraSprint)
 }

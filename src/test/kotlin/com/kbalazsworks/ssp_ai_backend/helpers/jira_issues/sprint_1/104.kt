@@ -1,12 +1,12 @@
 package com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.ChangeItem
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Changelog
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Fields
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.History
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.JiraIssue
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.NameField
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.ChangeItem
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Changelog
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Fields
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.History
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssue
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.NameField
 import com.kbalazsworks.ssp_ai_backend.helpers.authors
 import com.kbalazsworks.ssp_ai_backend.helpers.getDate
 import com.kbalazsworks.ssp_ai_backend.helpers.getDevsFe

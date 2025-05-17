@@ -1,18 +1,18 @@
 package com.kbalazsworks.ssp_ai_backend.helpers
 
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Attachment
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Author
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.IssueLink
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.LinkType
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.NameField
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.OutwardIssue
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.StatusField
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.SubTask
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.SubTaskType
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.TimeTracking
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.User
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Watcher
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.Worklog
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Attachment
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Author
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.IssueLink
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.LinkType
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.NameField
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.OutwardIssue
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.StatusField
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.SubTask
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.SubTaskType
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.TimeTracking
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.User
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Watcher
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.Worklog
 import kotlin.random.Random
 
 val statuses = listOf("To Do", "In Progress", "Done", "Blocked", "Under Review")

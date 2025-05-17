@@ -6,7 +6,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.PromptConf
 import org.springframework.stereotype.Service
 
 @Service
-class AiPromptServiceService {
+class PromptServiceService {
     companion object {
         const val TEXT_TO_TOKEN_RATIO = 4 // This is a rough estimation(~0.75 words per token for English text)
         const val TICKET_SEPARATOR = "\n\n"

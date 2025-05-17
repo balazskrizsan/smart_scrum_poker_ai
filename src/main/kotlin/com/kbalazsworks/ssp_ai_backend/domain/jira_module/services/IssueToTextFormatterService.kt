@@ -1,18 +1,18 @@
-package com.kbalazsworks.ssp_ai_backend.domain.ai_module.services
+package com.kbalazsworks.ssp_ai_backend.domain.jira_module.services
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.JiraIssue
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssue
 import org.springframework.stereotype.Service
 
 @Service
-class OpenAiFormatterService {
+class IssueToTextFormatterService {
     companion object {
         private val objectMapper: ObjectMapper = jacksonObjectMapper()
     }
 
-    fun jiraIssueToText(jsonText: String): String {
+    fun format(jsonText: String): String {
         val issue: JiraIssue = objectMapper.readValue(jsonText)
         val builder = StringBuilder()
 

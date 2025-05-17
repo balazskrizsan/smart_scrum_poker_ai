@@ -13,10 +13,11 @@ class SqsService(
     private val appProps: ApplicationPropertiesService
 ) {
     // @todo: unit test
-    fun sendMessage(payload: String): CompletableFuture<SendMessageResponse> = sqsAsyncClient.sendMessage(
-        SendMessageRequest.builder()
-            .queueUrl(appProps.awsSqsQueueUrl)
-            .messageBody(payload)
-            .build()
-    )
+    fun sendMessage(payload: String): CompletableFuture<SendMessageResponse> = sqsAsyncClient
+        .sendMessage(
+            SendMessageRequest.builder()
+                .queueUrl(appProps.awsSqsQueueUrl)
+                .messageBody(payload)
+                .build()
+        )
 }

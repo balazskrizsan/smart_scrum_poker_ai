@@ -13,7 +13,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
-class QuestionService_CreateQuestionEmbeddingTest : AbstractTest() {
+class QuestionService_CreateQuestionTest : AbstractTest() {
     @Test
     @SqlPreset
     fun validQuestion_embeddedSavedToDb() {
@@ -27,7 +27,7 @@ class QuestionService_CreateQuestionEmbeddingTest : AbstractTest() {
 
         // Act
         val mocks = listOf(sqsServiceMock, localDateTimeFactoryMock)
-        createInstance(QuestionService::class.java, mocks).createQuestionEmbedding(testedCreateEmbedding)
+        createInstance(QuestionService::class.java, mocks).createQuestion(testedCreateEmbedding)
 
         // Assert
         val actual = getDSLContext().selectFrom(questionTable).fetchOneInto(Question::class.java)

@@ -28,7 +28,7 @@ class QuestionPostAction(
     fun post(@Valid @RequestBody request: QuestionPostRequest): ResponseEntity<ResponseData<String>> {
         logger.info("Api call: POST:{}", "/api/v1/company")
 
-        questionService.createQuestionEmbedding(RequestMapperService.map(stateService.getSnapshot(), request))
+        questionService.createQuestion(RequestMapperService.map(stateService.getSnapshot(), request))
 
         return ResponseEntityBuilder<String>().data("").build()
     }

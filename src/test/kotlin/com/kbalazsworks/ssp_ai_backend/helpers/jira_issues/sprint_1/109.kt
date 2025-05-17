@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.*
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.*
 import com.kbalazsworks.ssp_ai_backend.helpers.*
 import com.pgvector.PGvector
 

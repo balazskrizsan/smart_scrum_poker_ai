@@ -2,7 +2,7 @@ package com.kbalazsworks.ssp_ai_backend.helpers.test_data_generator
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.JiraIssue
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssue
 import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.*
 import org.junit.jupiter.api.Test
 

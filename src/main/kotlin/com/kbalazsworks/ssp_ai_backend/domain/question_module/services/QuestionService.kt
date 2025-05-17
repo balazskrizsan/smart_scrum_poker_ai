@@ -23,8 +23,8 @@ class QuestionService(
         private val logger = LoggerFactory.getLogger(this::class.java)
     }
 
-    fun createQuestionEmbedding(createQuestionEmbedding: CreateQuestionEmbedding) {
-        logger.info("Create question embedding")
+    fun createQuestion(createQuestionEmbedding: CreateQuestionEmbedding) {
+        logger.info("Create question: {}", createQuestionEmbedding.question)
 
         val question = questionRepository.save(
             Question(null, createQuestionEmbedding.question, localDateTimeFactory.create())
@@ -39,4 +39,8 @@ class QuestionService(
 
     private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =
         PGvector(embeddingResult.data().first().embedding().toDoubleArray().map { it.toFloat() })
+
+    fun embedQuestion(questionId: Long) {
+
+    }
 }
