@@ -4,7 +4,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.ai_module.entities.VectorModel
 
 class VectorModelFakeBuilder {
     companion object {
-        val DEFAULT_ID: Long? = 100500L
+        val DEFAULT_ID: Long? = 1L // will be 100500L after company/board configs are available
         val DEFAULT_NAME: String = "DEFAULT embedded model name"
     }
 

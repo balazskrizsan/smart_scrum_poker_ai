@@ -3,18 +3,19 @@ package com.kbalazsworks.ssp_ai_backend.domain.question_module.services
 import com.kbalazsworks.ssp_ai_backend.common.extensions.onFailure
 import com.kbalazsworks.ssp_ai_backend.common.extensions.onSuccess
 import com.kbalazsworks.ssp_ai_backend.common.factories.LocalDateTimeFactory
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.AiModuleFacade
 import com.kbalazsworks.ssp_ai_backend.domain.common_module.constants.SqsMessages.Companion.QUESTION_QUEUE_REQUEST
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.entities.Question
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.repositories.QuestionRepository
-import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.value_objects.CreateQuestionEmbedding
-import com.openai.models.embeddings.CreateEmbeddingResponse
-import com.pgvector.PGvector
+import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
+import com.openai.models.embeddings.EmbeddingModel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
 class QuestionService(
+    private val aiModuleFacade: AiModuleFacade,
     private val sqsService: SqsService,
     private val questionRepository: QuestionRepository,
     private val localDateTimeFactory: LocalDateTimeFactory,
@@ -26,7 +27,7 @@ class QuestionService(
     fun createQuestion(createQuestionEmbedding: CreateQuestionEmbedding) {
         logger.info("Create question: {}", createQuestionEmbedding.question)
 
-        val question = questionRepository.save(
+        val question = questionRepository._save(
             Question(null, createQuestionEmbedding.question, localDateTimeFactory.create())
         )
 
@@ -37,10 +38,12 @@ class QuestionService(
 
     fun get(id: Long) = questionRepository._getOneById(id)
 
-    private fun mapEmbeddingResult(embeddingResult: CreateEmbeddingResponse): PGvector =
-        PGvector(embeddingResult.data().first().embedding().toDoubleArray().map { it.toFloat() })
-
     fun embedQuestion(questionId: Long) {
+        val question = questionRepository._getOneById(questionId)
 
+        aiModuleFacade.createAndSaveEmbedding(
+            aiModuleFacade.getEmbeddingConfigFactory().create(
+                EmbeddingModel.TEXT_EMBEDDING_3_SMALL, question.question, question.id, null)
+        )
     }
 }
