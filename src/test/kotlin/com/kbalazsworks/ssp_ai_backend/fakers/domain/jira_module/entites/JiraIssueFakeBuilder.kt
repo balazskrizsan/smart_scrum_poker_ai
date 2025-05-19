@@ -1,12 +1,12 @@
 package com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites
 
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraIssue
 import com.kbalazsworks.ssp_ai_backend.helpers.DateTimeHelper
 import com.kbalazsworks.ssp_ai_backend.helpers.JiraHelper
 import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.*
 import java.time.LocalDateTime
 
-class JiraIssueEmbeddingFakeBuilder {
+class JiraIssueFakeBuilder {
     companion object {
         const val DEFAULT_ID = 100000L
         const val DEFAULT_ID101 = 100101L
@@ -39,7 +39,7 @@ class JiraIssueEmbeddingFakeBuilder {
     private var openaiCompatibleText = DEFAULT_OPENAI_COMPATIBLE_TEXT
     private var createdAt: LocalDateTime = DEFAULT_CREATED_AT
 
-    fun build() = JiraIssueEmbedding(
+    fun build() = JiraIssue(
         id,
         jiraSprintId,
         rawJson,
@@ -51,109 +51,109 @@ class JiraIssueEmbeddingFakeBuilder {
     fun withOpenaiCompatibleText(openaiCompatibleText: String) =
         apply { this.openaiCompatibleText = openaiCompatibleText }
 
-    fun withRealEmbeddedJiraIssue101() = apply {
+    fun withRealJiraIssue101() = apply {
         id = 100101
         rawJson = issue101prettyJson
         openaiCompatibleText = issue101openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue102() = apply {
+    fun withRealJiraIssue102() = apply {
         id = 100102
         rawJson = issue102prettyJson
         openaiCompatibleText = issue102openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue103() = apply {
+    fun withRealJiraIssue103() = apply {
         id = 100103
         rawJson = issue103prettyJson
         openaiCompatibleText = issue103openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue104() = apply {
+    fun withRealJiraIssue104() = apply {
         id = 100104
         rawJson = issue104prettyJson
         openaiCompatibleText = issue104openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue105() = apply {
+    fun withRealJiraIssue105() = apply {
         id = 100105
         rawJson = issue105prettyJson
         openaiCompatibleText = issue105openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue106() = apply {
+    fun withRealJiraIssue106() = apply {
         id = 100106
         rawJson = issue106prettyJson
         openaiCompatibleText = issue106openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue107() = apply {
+    fun withRealJiraIssue107() = apply {
         id = 100107
         rawJson = issue107prettyJson
         openaiCompatibleText = issue107openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue108() = apply {
+    fun withRealJiraIssue108() = apply {
         id = 100108
         rawJson = issue108prettyJson
         openaiCompatibleText = issue108openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue109() = apply {
+    fun withRealJiraIssue109() = apply {
         id = 100109
         rawJson = issue109prettyJson
         openaiCompatibleText = issue109openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue110() = apply {
+    fun withRealJiraIssue110() = apply {
         id = 100110
         rawJson = issue110prettyJson
         openaiCompatibleText = issue110openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue111() = apply {
+    fun withRealJiraIssue111() = apply {
         id = 100111
         rawJson = issue111prettyJson
         openaiCompatibleText = issue111openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue112() = apply {
+    fun withRealJiraIssue112() = apply {
         id = 100112
         rawJson = issue112prettyJson
         openaiCompatibleText = issue112openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue113() = apply {
+    fun withRealJiraIssue113() = apply {
         id = 100113
         rawJson = issue113prettyJson
         openaiCompatibleText = issue113openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue114() = apply {
+    fun withRealJiraIssue114() = apply {
         id = 100114
         rawJson = issue114prettyJson
         openaiCompatibleText = issue114openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue115() = apply {
+    fun withRealJiraIssue115() = apply {
         id = 100115
         rawJson = issue115prettyJson
         openaiCompatibleText = issue115openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue116() = apply {
+    fun withRealJiraIssue116() = apply {
         id = 100116
         rawJson = issue116prettyJson
         openaiCompatibleText = issue116openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue117() = apply {
+    fun withRealJiraIssue117() = apply {
         id = 100117
         rawJson = issue117prettyJson
         openaiCompatibleText = issue117openAiCompatibleText
     }
 
-    fun withRealEmbeddedJiraIssue118() = apply {
+    fun withRealJiraIssue118() = apply {
         id = 100118
         rawJson = issue118prettyJson
         openaiCompatibleText = issue118openAiCompatibleText

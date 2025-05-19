@@ -2,7 +2,7 @@ package com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities
 
 import java.time.LocalDateTime
 
-data class JiraIssueEmbedding(
+data class JiraIssue(
     val id: Long?,
     val jiraSprintId: Long,
     val rawJson: String,

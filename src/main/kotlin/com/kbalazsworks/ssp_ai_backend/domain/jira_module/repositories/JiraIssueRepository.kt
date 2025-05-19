@@ -4,7 +4,7 @@ import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
 import com.kbalazsworks.ssp_ai_backend.db.tables.references.JIRA_ISSUES
 import com.kbalazsworks.ssp_ai_backend.db.tables.references.QUESTIONS
 import com.kbalazsworks.ssp_ai_backend.db.tables.references.VECTOR_STORE_1536
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraIssue
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.exceptions.JiraTicketEmbeddingException
 import com.kbalazsworks.ssp_ai_backend.domain.common_module.repositories.AbstractRepository
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
@@ -13,15 +13,15 @@ import org.jooq.impl.DSL
 import org.springframework.stereotype.Repository
 
 @Repository
-class JiraIssueEmbeddingRepository(jooqService: JooqService) : AbstractRepository(jooqService) {
-    fun save(jiraIssueEmbedding: JiraIssueEmbedding) = getCtx()
+class JiraIssueRepository(jooqService: JooqService) : AbstractRepository(jooqService) {
+    fun save(jiraIssue: JiraIssue) = getCtx()
         .insertInto(JIRA_ISSUES)
-        .set(JIRA_ISSUES.JIRA_SPRINT_ID, jiraIssueEmbedding.jiraSprintId)
-        .set(JIRA_ISSUES.RAW_JSON, jiraIssueEmbedding.rawJson)
-        .set(JIRA_ISSUES.OPENAI_COMPATIBLE_TEXT, jiraIssueEmbedding.openaiCompatibleText)
-        .set(JIRA_ISSUES.CREATED_AT, jiraIssueEmbedding.createdAt)
+        .set(JIRA_ISSUES.JIRA_SPRINT_ID, jiraIssue.jiraSprintId)
+        .set(JIRA_ISSUES.RAW_JSON, jiraIssue.rawJson)
+        .set(JIRA_ISSUES.OPENAI_COMPATIBLE_TEXT, jiraIssue.openaiCompatibleText)
+        .set(JIRA_ISSUES.CREATED_AT, jiraIssue.createdAt)
         .returning()
-        .fetchOneInto(JiraIssueEmbedding::class.java)
+        .fetchOneInto(JiraIssue::class.java)
         ?: throw JiraTicketEmbeddingException("JiraTicketEmbedding creation failed.")
 
     fun similaritySearch(askAi: AskAi): List<JiraIssueSimilarity> = getCtx()
@@ -33,7 +33,7 @@ class JiraIssueEmbeddingRepository(jooqService: JooqService) : AbstractRepositor
         .limit(10)
         .fetch()
         .mapNotNull { record ->
-            val embedding = record.into(JiraIssueEmbedding::class.java)
+            val embedding = record.into(JiraIssue::class.java)
             val similarity = record.get("similarity", Float::class.java)
             JiraIssueSimilarity(similarity, embedding)
         }

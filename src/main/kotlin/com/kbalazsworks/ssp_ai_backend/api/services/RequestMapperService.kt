@@ -11,12 +11,12 @@ import com.kbalazsworks.ssp_ai_backend.domain.company_module.entities.Company
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraBoard
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.entities.JiraSprint
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.CreateJiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.CreateJiraIssue
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.value_objects.CreateQuestionEmbedding
 
 class RequestMapperService {
     companion object {
-        fun map(request: JiraIssuePostRequest) = CreateJiraIssueEmbedding(request.jiraSprintId, request.jiraIssueJson)
+        fun map(request: JiraIssuePostRequest) = CreateJiraIssue(request.jiraSprintId, request.jiraIssueJson)
 
         fun map(state: State, request: CompanyPostRequest) = Company(null, request.name, state.localDateTime)
 

@@ -4,7 +4,7 @@ import com.kbalazsworks.ssp_ai_backend.AbstractTest
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptException
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.services.PromptServiceService
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssueSimilarity
-import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueEmbeddingFakeBuilder
+import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueFakeBuilder
 import com.kbalazsworks.ssp_ai_backend.helpers.jira_issues.sprint_1.*
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -16,15 +16,15 @@ class PromptServiceService_GetLimitedPromptTest : AbstractTest() {
     fun sendingMultipleJiraIssues_calculatesCorrectly() {
         // Arrange
         val tested = listOf(
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue101().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue102().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue103().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue104().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue105().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue106().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue107().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue108().build()),
-            JiraIssueSimilarity(0f, JiraIssueEmbeddingFakeBuilder().withRealEmbeddedJiraIssue109().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue101().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue102().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue103().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue104().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue105().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue106().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue107().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue108().build()),
+            JiraIssueSimilarity(0f, JiraIssueFakeBuilder().withRealJiraIssue109().build()),
         )
 
         val expected = issue101openAiCompatibleText + "\n\n" +
@@ -47,8 +47,8 @@ class PromptServiceService_GetLimitedPromptTest : AbstractTest() {
         val tested = listOf(
             JiraIssueSimilarity(
                 0f,
-                JiraIssueEmbeddingFakeBuilder()
-                    .withRealEmbeddedJiraIssue101()
+                JiraIssueFakeBuilder()
+                    .withRealJiraIssue101()
                     .withOpenaiCompatibleText("qwe")
                     .build()
             )

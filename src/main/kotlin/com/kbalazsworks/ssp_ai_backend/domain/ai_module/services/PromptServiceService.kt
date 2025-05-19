@@ -16,7 +16,7 @@ class PromptServiceService {
 
     fun getLimitedPrompt(jiraIssueSimilarities: List<JiraIssueSimilarity>) = buildString {
         for ((index, similarity) in jiraIssueSimilarities.withIndex()) {
-            val text = similarity.jiraIssueEmbedding.openaiCompatibleText
+            val text = similarity.jiraIssue.openaiCompatibleText
             if (getEstimatedTokenNumber(this.toString() + text) > promptConfig.tokenLimit) {
                 break
             }

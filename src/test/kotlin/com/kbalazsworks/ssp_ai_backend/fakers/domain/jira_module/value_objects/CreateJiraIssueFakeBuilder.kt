@@ -1,13 +1,13 @@
 package com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.value_objects
 
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.CreateJiraIssueEmbedding
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.CreateJiraIssue
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraSprintFakeBuilder
-import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueEmbeddingFakeBuilder
+import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueFakeBuilder
 
-class CreateJiraIssueEmbeddingFakeBuilder {
+class CreateJiraIssueFakeBuilder {
     companion object {
         const val DEFAULT_JIRA_SPRINT_ID = JiraSprintFakeBuilder.DEFAULT_ID
-        val DEFAULT_RAW_JSON = JiraIssueEmbeddingFakeBuilder.DEFAULT_RAW_JSON
+        val DEFAULT_RAW_JSON = JiraIssueFakeBuilder.DEFAULT_RAW_JSON
     }
 
     private var jiraSprintId = DEFAULT_JIRA_SPRINT_ID
@@ -15,5 +15,5 @@ class CreateJiraIssueEmbeddingFakeBuilder {
 
     fun rawJson(rawJson: String) = apply { this.rawJson = rawJson }
 
-    fun build() = CreateJiraIssueEmbedding(jiraSprintId, rawJson)
+    fun build() = CreateJiraIssue(jiraSprintId, rawJson)
 }

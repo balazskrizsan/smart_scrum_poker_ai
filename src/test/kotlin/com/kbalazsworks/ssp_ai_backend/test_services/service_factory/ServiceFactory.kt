@@ -6,7 +6,7 @@ import com.kbalazsworks.ssp_ai_backend.common.services.JooqService
 import com.kbalazsworks.ssp_ai_backend.domain.company_module.repositories.CompanyRepository
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraBoardRepository
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraSprintRepository
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraIssueEmbeddingRepository
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraIssueRepository
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.repositories.QuestionRepository
 import com.kbalazsworks.ssp_ai_backend.domain.sqs_module.services.SqsService
 import com.openai.client.OpenAIClient
@@ -22,7 +22,7 @@ import java.util.*
 class ServiceFactory(
     private val sqsService: SqsService,
     private val jooqService: JooqService,
-    private val jiraIssueEmbeddingRepository: JiraIssueEmbeddingRepository,
+    private val jiraIssueRepository: JiraIssueRepository,
     private val jiraSprintRepository: JiraSprintRepository,
     private val companyRepository: CompanyRepository,
     private val jiraBoardRepository: JiraBoardRepository,
