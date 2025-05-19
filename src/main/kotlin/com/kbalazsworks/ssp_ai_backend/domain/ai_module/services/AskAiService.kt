@@ -1,8 +1,8 @@
 package com.kbalazsworks.ssp_ai_backend.domain.ai_module.services
 
-import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.IssueEmbeddingService
-import com.kbalazsworks.ssp_ai_backend.domain.question_module.services.QuestionService
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.AskAi
+import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.IssueEmbeddingService
+import com.kbalazsworks.ssp_ai_backend.domain.question_module.QuestionModuleFacade
 import com.openai.client.OpenAIClient
 import com.openai.core.http.AsyncStreamResponse
 import com.openai.models.ChatModel
@@ -17,10 +17,10 @@ class AskAiService(
     private val issueEmbeddingService: IssueEmbeddingService,
     private val openAIClient: OpenAIClient,
     private val promptServiceService: PromptServiceService,
-    private val questionService: QuestionService,
+    private val questionModuleFacade: QuestionModuleFacade,
 ) {
     fun askSprint(askAi: AskAi): Flux<String> {
-        val question = questionService.get(askAi.questionId)
+        val question = questionModuleFacade.getQuestion(askAi.questionId)
         val jiraIssueSimilarityList = issueEmbeddingService.similaritySearch(askAi)
         val chatLimitedTickets = promptServiceService.getLimitedPrompt(jiraIssueSimilarityList)
 
