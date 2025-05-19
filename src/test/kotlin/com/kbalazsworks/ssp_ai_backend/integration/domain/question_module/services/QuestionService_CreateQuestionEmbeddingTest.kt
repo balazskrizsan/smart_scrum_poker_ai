@@ -6,7 +6,7 @@ import com.kbalazsworks.ssp_ai_backend.domain.question_module.services.QuestionS
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.question_module.entites.QuestionFakeBuilder
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.question_module.value_objects.CreateQuestionEmbeddingFakeBuilder
 import com.kbalazsworks.ssp_ai_backend.mockers.common.factories.LocalDateTimeFactoryMocker
-import com.kbalazsworks.ssp_ai_backend.mockers.domain.sqs_module.SqsServiceMocker
+import com.kbalazsworks.ssp_ai_backend.mockers.domain.sqs_module.SqsModuleFacadeMocker
 import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset
 import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
@@ -23,10 +23,10 @@ class QuestionService_CreateQuestionTest : AbstractTest() {
         val expected = QuestionFakeBuilder().build()
 
         val localDateTimeFactoryMock = LocalDateTimeFactoryMocker().setDefaultValues().create()
-        val sqsServiceMock = SqsServiceMocker().withDefaultResponse().create()
+        val sqsModuleFacadeMock = SqsModuleFacadeMocker().withDefaultResponse().create()
 
         // Act
-        val mocks = listOf(sqsServiceMock, localDateTimeFactoryMock)
+        val mocks = listOf(sqsModuleFacadeMock, localDateTimeFactoryMock)
         createInstance(QuestionService::class.java, mocks).createQuestion(testedCreateEmbedding)
 
         // Assert
@@ -34,7 +34,7 @@ class QuestionService_CreateQuestionTest : AbstractTest() {
 
         assertAll(
             { assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected) },
-            { verify { sqsServiceMock.sendMessage(eq("""{"type": "question_embedder", "data": 1}""")) } }
+            { verify { sqsModuleFacadeMock.sendMessage(eq("""{"type": "question_embedder", "data": 1}""")) } }
         )
     }
 }
