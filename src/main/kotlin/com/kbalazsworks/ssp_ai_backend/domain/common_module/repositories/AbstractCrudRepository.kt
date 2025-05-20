@@ -20,6 +20,7 @@ abstract class AbstractCrudRepository<ENTITY, TABLE_TYPE : TableImpl<RECORD_TYPE
 
     fun _fetchOne(): ENTITY = getCtx()
         .selectFrom(tableMeta.table)
+        .limit(1)
         .fetchOneInto(tableMeta.entityClass)
         ?: throwNotFound()
 
