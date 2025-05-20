@@ -1,5 +1,6 @@
-package com.kbalazsworks.ssp_ai_backend.api.services
+package com.kbalazsworks.ssp_ai_backend.api.handlers
 
+import com.kbalazsworks.ssp_ai_backend.api.builders.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
 import org.jooq.exception.IntegrityConstraintViolationException
 import org.springframework.core.Ordered
@@ -24,33 +25,26 @@ class GlobalExceptionHandler {
     fun simpleErrorHandler(ex: Exception): ResponseEntity<ResponseData<String>> {
         logger.error("Global exception handler error: ${ex.message}", ex)
 
+        val exceptionDetails = getDetails(ex)
+
         return ResponseEntityBuilder<String>()
-            .data(getMessage(ex))
+            .data(exceptionDetails.message)
             .statusCode(HttpStatus.BAD_REQUEST)
-            .errorCode(getErrorCode(ex))
+            .errorCode(exceptionDetails.errorCode)
             .build()
     }
 
-    private fun getErrorCode(ex: Exception) = when (ex) {
-        is MethodArgumentNotValidException -> 2
-
-        is HttpMessageNotReadableException -> 3
-
-        is IntegrityConstraintViolationException -> 4
-
-        else -> 1
+    private fun getDetails(ex: Exception) = when (ex) {
+        is MethodArgumentNotValidException -> ExceptionDetails(getMethodArgumentNotValidExceptionMessage(ex), 2)
+        is HttpMessageNotReadableException -> ExceptionDetails("Invalid JSON format", 3)
+        is IntegrityConstraintViolationException -> ExceptionDetails("Error occurred", 4)
+        else -> ExceptionDetails("Unknown error", 1)
     }
 
-    private fun getMessage(ex: Exception) = when (ex) {
-        is MethodArgumentNotValidException -> ex
-            .bindingResult
-            .fieldErrors
-            .joinToString(", ") { "${it.field}: ${it.defaultMessage}" }
+    private data class ExceptionDetails(val message: String, val errorCode: Int)
 
-        is HttpMessageNotReadableException -> "Invalid JSON format"
-
-        is IntegrityConstraintViolationException -> "Error occurred"
-
-        else -> "Unknown error"
-    }
+    private fun getMethodArgumentNotValidExceptionMessage(ex: MethodArgumentNotValidException) = ex
+        .bindingResult
+        .fieldErrors
+        .joinToString(", ") { "${it.field}: ${it.defaultMessage}" }
 }

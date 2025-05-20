@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.api.services
+package com.kbalazsworks.ssp_ai_backend.api.builders
 
 import com.kbalazsworks.ssp_ai_backend.api.exceptions.ApiException
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData

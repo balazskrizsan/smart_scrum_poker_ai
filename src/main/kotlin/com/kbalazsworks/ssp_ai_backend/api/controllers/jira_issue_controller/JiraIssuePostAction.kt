@@ -3,7 +3,7 @@ package com.kbalazsworks.ssp_ai_backend.api.controllers.jira_issue_controller
 import com.kbalazsworks.ssp_ai_backend.api.requests.jira_issue.JiraIssuePostRequest
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.services.IssueEmbeddingService
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
-import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
+import com.kbalazsworks.ssp_ai_backend.api.builders.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
 import jakarta.validation.Valid
 import org.slf4j.LoggerFactory

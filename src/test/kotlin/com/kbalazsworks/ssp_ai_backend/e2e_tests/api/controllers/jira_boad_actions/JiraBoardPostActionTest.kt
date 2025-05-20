@@ -90,7 +90,7 @@ class JiraBoardPostActionTest {
         val testedRequest = """{"companyId": -1, "name": ""}"""
 
         val expectedStatus = status().isBadRequest()
-        val expectedData = """{"data":"companyId: 'companyId' must be positive, name: 'name' must be at least 2 characters long","success":false,"errorCode":2,"requestId":"1"}"""
+        val expectedData = """{"data":"name: 'name' must be at least 2 characters long, companyId: 'companyId' must be positive","success":false,"errorCode":2,"requestId":"1"}"""
 
         // Act  - Assert
         mockMvc

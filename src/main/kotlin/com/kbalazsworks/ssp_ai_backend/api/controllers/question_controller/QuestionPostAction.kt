@@ -2,7 +2,7 @@ package com.kbalazsworks.ssp_ai_backend.api.controllers.question_controller
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.question.QuestionPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService
-import com.kbalazsworks.ssp_ai_backend.api.services.ResponseEntityBuilder
+import com.kbalazsworks.ssp_ai_backend.api.builders.ResponseEntityBuilder
 import com.kbalazsworks.ssp_ai_backend.common.services.StateService
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
 import com.kbalazsworks.ssp_ai_backend.domain.question_module.services.QuestionService
