@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.unit.domain.ai_module.services
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptException
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptHttpException
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.services.PromptServiceService
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssueSimilarity
 import com.kbalazsworks.ssp_ai_backend.fakers.domain.jira_module.entites.JiraIssueFakeBuilder
@@ -60,7 +60,7 @@ class PromptServiceService_GetLimitedPromptTest : AbstractTest() {
         assertThatThrownBy {
             createInstance(PromptServiceService::class.java).getLimitedPrompt(tested)
         }
-            .isInstanceOf(PromptException::class.java)
+            .isInstanceOf(PromptHttpException::class.java)
             .hasMessageContaining(expectedExceptionMessage)
     }
 }

@@ -1,6 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.domain.ai_module.services
 
-import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptException
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.exceptions.PromptHttpException
+import com.kbalazsworks.ssp_ai_backend.domain.ai_module.factories.ExceptionFactory
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.value_objects.JiraIssueSimilarity
 import com.kbalazsworks.ssp_ai_backend.domain.ai_module.value_objects.PromptConfig
 import org.springframework.stereotype.Service
@@ -29,7 +30,7 @@ class PromptServiceService {
         }
     }
         .removeSuffix(TICKET_SEPARATOR)
-        .also { if (getEstimatedTokenNumber(it) < MIN_TOKEN_LIMIT) throw PromptException("Prompt is too short") }
+        .also { if (getEstimatedTokenNumber(it) < MIN_TOKEN_LIMIT) ExceptionFactory.createPrompt("Prompt is too short") }
 
     private fun getEstimatedTokenNumber(text: String) = text.length / TEXT_TO_TOKEN_RATIO
 }

@@ -1,6 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.api.services
 
 import com.kbalazsworks.ssp_ai_backend.common.value_objects.ResponseData
+import org.jooq.exception.IntegrityConstraintViolationException
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
 import org.springframework.http.HttpStatus
@@ -24,19 +25,31 @@ class GlobalExceptionHandler {
         logger.error("Global exception handler error: ${ex.message}", ex)
 
         return ResponseEntityBuilder<String>()
-            .data(parseMessage(ex))
+            .data(getMessage(ex))
             .statusCode(HttpStatus.BAD_REQUEST)
-            .errorCode(1001)
+            .errorCode(getErrorCode(ex))
             .build()
     }
 
-    private fun parseMessage(ex: Exception) = when (ex) {
+    private fun getErrorCode(ex: Exception) = when (ex) {
+        is MethodArgumentNotValidException -> 2
+
+        is HttpMessageNotReadableException -> 3
+
+        is IntegrityConstraintViolationException -> 4
+
+        else -> 1
+    }
+
+    private fun getMessage(ex: Exception) = when (ex) {
         is MethodArgumentNotValidException -> ex
             .bindingResult
             .fieldErrors
             .joinToString(", ") { "${it.field}: ${it.defaultMessage}" }
 
         is HttpMessageNotReadableException -> "Invalid JSON format"
+
+        is IntegrityConstraintViolationException -> "Error occurred"
 
         else -> "Unknown error"
     }
