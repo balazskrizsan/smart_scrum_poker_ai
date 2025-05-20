@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.jira_boad
+package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.jira_board
 
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1Company
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraBoardRepository
@@ -30,7 +30,7 @@ class JiraBoardPostActionTest {
 
     @Test
     @SqlPreset(presets = [Insert1Company::class])
-    fun creatingNewCompany_returns200() {
+    fun creatingNewJiraBoard_returns200() {
         // Arrange
         val testedUrl = "/api/v1/jira-board"
         val testedRequest = """{"companyId": ${CompanyFakeBuilder.DEFAULT_ID}, "name": "tested board name"}"""
