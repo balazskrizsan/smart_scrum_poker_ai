@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.jira_boad_actions
+package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.jira_boad
 
 import com.kbalazsworks.ssp_ai_backend.db_preset.Insert1Company
 import com.kbalazsworks.ssp_ai_backend.domain.jira_module.repositories.JiraBoardRepository

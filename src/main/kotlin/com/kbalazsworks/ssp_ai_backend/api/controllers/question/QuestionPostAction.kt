@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.api.controllers.question_controller
+package com.kbalazsworks.ssp_ai_backend.api.controllers.question
 
 import com.kbalazsworks.ssp_ai_backend.api.requests.question.QuestionPostRequest
 import com.kbalazsworks.ssp_ai_backend.api.services.RequestMapperService

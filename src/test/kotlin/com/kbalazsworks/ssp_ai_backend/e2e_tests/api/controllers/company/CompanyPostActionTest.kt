@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.company_actions
+package com.kbalazsworks.ssp_ai_backend.e2e_tests.api.controllers.company
 
 import com.kbalazsworks.ssp_ai_backend.domain.company_module.repositories.CompanyRepository
 import com.kbalazsworks.ssp_ai_backend.test_services.db_preset_service.SqlPreset

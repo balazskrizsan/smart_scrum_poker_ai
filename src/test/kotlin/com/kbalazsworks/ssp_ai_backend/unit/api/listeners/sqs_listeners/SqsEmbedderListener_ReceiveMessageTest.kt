@@ -1,7 +1,7 @@
 package com.kbalazsworks.ssp_ai_backend.unit.api.listeners.sqs_listeners
 
 import com.kbalazsworks.ssp_ai_backend.AbstractTest
-import com.kbalazsworks.ssp_ai_backend.api.listeners.sqs_listeners.SqsEmbedderListener
+import com.kbalazsworks.ssp_ai_backend.api.listeners.sqs.SqsEmbedderListener
 import com.kbalazsworks.ssp_ai_backend.common.services.ApplicationPropertiesService
 import com.kbalazsworks.ssp_ai_backend.mockers.domain.sqs_module.EmbedderQueueHandlerServiceMocker
 import io.awspring.cloud.sqs.annotation.SqsListener

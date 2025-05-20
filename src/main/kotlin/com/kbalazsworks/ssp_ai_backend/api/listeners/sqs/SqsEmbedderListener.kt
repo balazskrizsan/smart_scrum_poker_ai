@@ -1,4 +1,4 @@
-package com.kbalazsworks.ssp_ai_backend.api.listeners.sqs_listeners
+package com.kbalazsworks.ssp_ai_backend.api.listeners.sqs
 
 import com.kbalazsworks.ssp_ai_backend.common.services.ApplicationPropertiesService
 import com.kbalazsworks.ssp_ai_backend.common.services.ApplicationPropertiesService.Companion.AWS_SQS_LISTENER_ENABLED
